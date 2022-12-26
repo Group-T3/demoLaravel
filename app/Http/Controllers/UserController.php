@@ -16,11 +16,13 @@ class UserController extends Controller
     }
 
     public function index() {
-        return $this->userServiceInterfaces->findAll();
+        $users = $this->userServiceInterfaces->findAll();
+        return view('user.list')->with('users', $users);
     }
 
     public function detail($id) {
-        return $this->userServiceInterfaces->findById($id);
+        $user = $this->userServiceInterfaces->findById($id);
+        return view('user.detail')->with('user', $user);
     }
 
     public function create(UserRequest $request) {

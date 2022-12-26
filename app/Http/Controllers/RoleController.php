@@ -16,11 +16,13 @@ class RoleController extends Controller
     }
 
     public function index() {
-        return $this->roleServiceInterfaces->findAll();
+        $roles = $this->roleServiceInterfaces->findAll();
+        return view('user.role.list')->with('roles', $roles);
     }
 
     public function detail($id) {
-        return $this->roleServiceInterfaces->findById($id);
+        $role = $this->roleServiceInterfaces->findById($id);
+        return view('user.role.detail')->with('role', $role);
     }
 
     public function create(RoleRequest $request) {

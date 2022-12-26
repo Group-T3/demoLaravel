@@ -15,11 +15,13 @@ class CategoryController extends Controller
     }
 
     public function getList() {
-        return $this->categoryServiceInterfaces->findAll();
+        $category = $this->categoryServiceInterfaces->findAll();
+        return view('product.category.list')->with('categories', $category);
     }
 
     public function getDetail($id) {
-        return $this->categoryServiceInterfaces->findById($id);
+        $category = $this->categoryServiceInterfaces->findById($id);
+        return view('product.category.detail')->with('category', $category);
     }
 
     public function createCategory(CategoryRequest $request) {

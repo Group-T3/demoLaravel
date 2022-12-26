@@ -16,11 +16,13 @@ class ProductController extends Controller
     }
 
     public function index() {
-        return $this->productServiceInterfaces->findAll();
+        $products = $this->productServiceInterfaces->findAll();
+        return view('product.list')->with('products', $products);
     }
 
     public function detail($id) {
-        return $this->productServiceInterfaces->findById($id);
+        $product = $this->productServiceInterfaces->findById($id);
+        return view('product.detail')->with('product', $product);
     }
 
     public function create(ProductRequest $request) {

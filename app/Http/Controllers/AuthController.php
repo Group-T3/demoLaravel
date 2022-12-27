@@ -42,8 +42,9 @@ class AuthController extends Controller
 //        ];
         $token = Auth::attempt($request->validated());
         if ($token) {
-             $this->createNewToken($token);
-             Cookie::queue('jwt_token', $token, 60);
+            $this->createNewToken($token);
+            Cookie::queue('jwt_token', $token, 60);
+//            $request->session()->regenerate();
             return redirect()->route('home');
         }
         return response()->json([
@@ -94,9 +95,10 @@ class AuthController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function logout() {
+    public function logout()
+    {
         Auth::logout();
-        return redirect()->route('test');
+        return redirect()->route('home');
     }
 
     /**
@@ -131,7 +133,8 @@ class AuthController extends Controller
         return response()->json([
             'access_token' => $token,
             'token_type' => 'bearer',
-            'expires_in' => auth()->factory()->getTTL() * 60,
+//            'expires_in' => auth()->factory()->getTTL() * 60,
+            'expires_in' => auth('api')->factory()->getTTL() * 60,
             'user' => auth()->user()
         ]);
     }

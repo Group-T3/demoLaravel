@@ -10,8 +10,8 @@
     <link rel="stylesheet " href="asset/css/style.css">
 </head>
 <body>
-<div id="main">
-    <div id="header">
+<div id="main" >
+    <div id="header" style="background-image: url({{asset('asset/images/bg.jpg')}});">
         <ul id="supHeader">
             <li><a href="/">Home</a></li>
             <li><a href="/products/list">Product</a></li>
@@ -43,5 +43,6 @@
         </ul>
     </div>
 </div>
+
 </body>
 </html>

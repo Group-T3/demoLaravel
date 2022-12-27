@@ -15,27 +15,32 @@ class RoleController extends Controller
         $this->roleServiceInterfaces = $roleServiceInterfaces;
     }
 
-    public function index() {
+    public function index()
+    {
         $roles = $this->roleServiceInterfaces->findAll();
-        return view('user.role.list')->with('roles', $roles);
+        return view('templates.user.role.list')->with('roles', $roles);
     }
 
-    public function detail($id) {
+    public function detail($id)
+    {
         $role = $this->roleServiceInterfaces->findById($id);
-        return view('user.role.detail')->with('role', $role);
+        return view('templates.user.role.detail')->with('role', $role);
     }
 
-    public function create(RoleRequest $request) {
+    public function create(RoleRequest $request)
+    {
         $validated = $request->validated();
         return $this->roleServiceInterfaces->create($validated);
     }
 
 
-    public function delete($id) {
+    public function delete($id)
+    {
         return $this->roleServiceInterfaces->delete($id);
     }
 
-    public function update($id, RoleRequest $request) {
+    public function update($id, RoleRequest $request)
+    {
         $validated = $request->validated();
         return $this->roleServiceInterfaces->update($id, $validated);
     }

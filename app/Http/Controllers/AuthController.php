@@ -9,6 +9,8 @@ use App\Models\User;
 use App\Service\Interfaces\UserServiceInterfaces;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\Request;
 
 class AuthController extends Controller
 {
@@ -19,6 +21,11 @@ class AuthController extends Controller
         $this->userServiceInterfaces = $userServiceInterfaces;
     }
 
+    public function loginProcess()
+    {
+        return view('auth.login');
+    }
+
     /**
      * Get a JWT via given credentials.
      *
@@ -26,16 +33,18 @@ class AuthController extends Controller
      */
     public function login(LoginRequest $request)
     {
-        $validated = $request->validated();
-        $email = $validated['email'];
-        $password = $validated['password'];
-        $credentials = [
-            'email' => $email,
-            'password' => $password,
-        ];
-        $token = Auth::attempt($credentials);
+//        $validated = $request->validated();
+//        $email = $validated['email'];
+//        $password = $validated['password'];
+//        $credentials = [
+//            'email' => $email,
+//            'password' => $password,
+//        ];
+        $token = Auth::attempt($request->validated());
         if ($token) {
-            return $this->createNewToken($token);
+             $this->createNewToken($token);
+             Cookie::queue('jwt_token', $token, 60);
+            return redirect()->route('home');
         }
         return response()->json([
             'status' => 'error',
@@ -71,7 +80,7 @@ class AuthController extends Controller
             'phonenumber' => 'A',
         ];
 
-        $user =  $this->userServiceInterfaces->create($credentials);
+        $user = $this->userServiceInterfaces->create($credentials);
 
         return response()->json([
             'message' => 'User successfully registered',
@@ -85,11 +94,9 @@ class AuthController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function logout()
-    {
-        auth()->logout();
-
-        return response()->json(['message' => 'User successfully signed out']);
+    public function logout() {
+        Auth::logout();
+        return redirect()->route('test');
     }
 
     /**

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
@@ -16,8 +17,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/welcome', [HomeController::class, 'test'])->name('test');
 
-Route::prefix('users')->group(function () {
+Route::prefix('auth')->group(function () {
+    Route::get('login', [\App\Http\Controllers\AuthController::class, 'loginProcess'])->name('login');
+    Route::post('login', [\App\Http\Controllers\AuthController::class, 'login'])->name('auth.login');
+    Route::post('register', [\App\Http\Controllers\AuthController::class, 'register'])->name('auth.register');
+    Route::get('logout', [\App\Http\Controllers\AuthController::class, 'logout'])->name('auth.logout');
+});
+
+Route::prefix('users')->middleware('auth')->group(function () {
     Route::get('list', [\App\Http\Controllers\UserController::class, 'index'])->name('show.all.users');
     Route::get('detail/{id}', [\App\Http\Controllers\UserController::class, 'detail'])->name('show.user');
     Route::put('update/{id}', [\App\Http\Controllers\UserController::class, 'update'])->name('update.user');
@@ -25,7 +34,7 @@ Route::prefix('users')->group(function () {
     Route::delete('{id}', [\App\Http\Controllers\UserController::class, 'delete'])->name('delete.user');
 });
 
-Route::prefix('roles')->group(function () {
+Route::prefix('roles')->middleware('auth:web')->group(function () {
     Route::get('list', [\App\Http\Controllers\RoleController::class, 'index'])->name('show.all.roles');
     Route::get('detail/{id}', [\App\Http\Controllers\RoleController::class, 'detail'])->name('show.role');
     Route::put('update/{id}', [\App\Http\Controllers\RoleController::class, 'update'])->name('update.role');
@@ -33,7 +42,7 @@ Route::prefix('roles')->group(function () {
     Route::delete('{id}', [\App\Http\Controllers\RoleController::class, 'delete'])->name('delete.role');
 });
 
-Route::prefix('products')->group(function () {
+Route::prefix('products')->middleware('auth')->group(function () {
     Route::get('list', [ProductController::class, 'index'])->name('show.all.products');
     Route::get('detail/{id}', [ProductController::class, 'detail'])->name('show.product');
     Route::put('update/{id}', [ProductController::class, 'update'])->name('update.product');
@@ -41,7 +50,7 @@ Route::prefix('products')->group(function () {
     Route::delete('{id}', [ProductController::class, 'delete'])->name('delete.product');
 });
 
-Route::prefix('categories')->group(function () {
+Route::prefix('categories')->middleware('auth')->group(function () {
     Route::get('list', [CategoryController::class, 'getList'])->name('show.all.categories');
     Route::get('detail/{id}', [CategoryController::class, 'getDetail'])->name('show.detail.category');
     Route::put('update/{id}', [CategoryController::class, 'updateCategory'])->name('update.category');

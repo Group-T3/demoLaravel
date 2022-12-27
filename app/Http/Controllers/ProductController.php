@@ -30,6 +30,10 @@ class ProductController extends Controller
         return $this->productServiceInterfaces->create($validated);
     }
 
+    public function createProcess()
+    {
+        return view('admin.product.create');
+    }
 
     public function delete($id) {
         return $this->productServiceInterfaces->delete($id);

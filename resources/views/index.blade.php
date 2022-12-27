@@ -11,13 +11,13 @@
 </head>
 <body>
 <div id="main" >
-    <div id="header" style="background-image: url({{asset('asset/images/bg.jpg')}});">
+    <div id="header" >
         <ul id="supHeader">
-            <li><a href="/">Home</a></li>
-            <li><a href="/products/list">Product</a></li>
-            <li><a href="/categories/list">Category</a></li>
-            <li><a href="/users/list">User</a></li>
-            <li><a href="/roles/list">Role</a></li>
+            <li><a href="{{route('home')}}">Home</a></li>
+            <li><a href="{{route('show.all.products')}}">Product</a></li>
+            <li><a href="{{route('show.all.categories')}}">Category</a></li>
+            <li><a href="{{route('show.all.users')}}">User</a></li>
+            <li><a href="{{route('show.all.roles')}}">Role</a></li>
             @if(!Auth::user())
                 <li>
                     <a class="" href="{{route('auth.login')}}">
@@ -32,15 +32,16 @@
                         <li><a href="#">AccountManager</a></li>
                         <li><a href="#">Setting</a></li>
                         <li>
-                            <form action="{{route('auth.logout')}}" method="get">
-                                @csrf
-                                <button type="submit">Logout</button>
-                            </form>
+                            <a href="{{route('auth.logout')}}">Logout</a>
                         </li>
                     </ul>
                 </li>
             @endif
         </ul>
+    </div>
+    <div style="margin: 100px 50px 0">
+        <h1 class="text-center">Hello world</h1>
+        <h5 style="margin: 36px 0 0" class="text-center">Click <a href="{{route('auth.login')}}" style="margin: 0 2px" class="text-decoration-none">here</a> to continue</h5>
     </div>
 </div>
 

@@ -46,6 +46,7 @@ Route::prefix('products')->middleware('auth')->group(function () {
     Route::get('list', [ProductController::class, 'index'])->name('show.all.products');
     Route::get('detail/{id}', [ProductController::class, 'detail'])->name('show.product');
     Route::put('update/{id}', [ProductController::class, 'update'])->name('update.product');
+    Route::get('create', [ProductController::class, 'createProcess'])->name('show.form.create');
     Route::post('create', [ProductController::class, 'create'])->name('create.product');
     Route::delete('{id}', [ProductController::class, 'delete'])->name('delete.product');
 });

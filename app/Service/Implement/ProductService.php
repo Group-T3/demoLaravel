@@ -16,7 +16,7 @@ class ProductService implements ProductServiceInterfaces
 
     public function findAll()
     {
-       return $this->productRepositoryInterfaces->getAll();
+        return $this->productRepositoryInterfaces->getAll();
     }
 
     public function findById($id)
@@ -26,6 +26,8 @@ class ProductService implements ProductServiceInterfaces
 
     public function create($data)
     {
+
+        $data['category_id'] = 1;
         return $this->productRepositoryInterfaces->create($data);
     }
 

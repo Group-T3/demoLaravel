@@ -28,7 +28,7 @@ class UserSeeder extends Seeder
             'password' => bcrypt('123456'),
         ]);
         $user3 = User:: Create([
-            'fullname' => 'user',
+            'fullname' => 'User',
             'avt' => fake()->imageUrl(),
             'address' => 'TP Ho Chi Minh',
             'email' => 'user@gmail.com',

@@ -26,9 +26,10 @@ class ProductRequest extends FormRequest
         return [
             'name' => 'required',
             'qty' => 'required',
-            'price' => 'required',
-            'img' => 'required',
+            'price' => 'numeric|between:0,999999.99',
+            'img' => 'required|url',
             'desc' => 'required',
+            'status' => 'required',
         ];
     }
 }

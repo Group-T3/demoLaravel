@@ -10,6 +10,8 @@ interface RepositoryInterface
      */
     public function getAll();
 
+    public function getAllByStatus();
+
     /**
      * Get one
      * @param $id
@@ -23,6 +25,7 @@ interface RepositoryInterface
      * @return mixed
      */
     public function create($data);
+
     /**
      * Update
      * @param $id

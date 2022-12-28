@@ -40,4 +40,14 @@ class ProductService implements ProductServiceInterfaces
     {
         return $this->productRepositoryInterfaces->delete($id);
     }
+
+    public function findAllByStatus()
+    {
+        return $this->productRepositoryInterfaces->getAllByStatus();
+    }
+
+    public function findByIdAndStatus($id)
+    {
+        return $this->productRepositoryInterfaces->findByIdAndStatus($id);
+    }
 }

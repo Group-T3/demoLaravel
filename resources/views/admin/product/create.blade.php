@@ -1,65 +1,92 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <title>Document</title>
-</head>
-<body>
-@if(session('error'))
-    <div class="alert alert-success">
-        {{ session('error') }}
-    </div>
-@endif
-<div class="header">
-    <h2 class="text-center" style="margin: 36px 0">Create product</h2>
-</div>
-<div class="container d-flex justify-content-center">
-    <form method="post" action="{{route('create.product')}}">
-        @csrf
-        <div  class="row">
-            <div class="form-group col-6" style="margin: 16px 0">
-                <label for="name" style="margin: 8px 0">Name:</label>
-                <input name="name" type="text" class="form-control" id="name"  placeholder="name"
-                          onfocus="this.placeholder = ''"
-                          onblur="this.placeholder = 'name'" required="">
+@extends('admin.layout.home')
+@section('content')
+    <main id="main" class="main">
+
+        <div class="pagetitle">
+            <h1>Product</h1>
+            <nav>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{{route('admin')}}">Home</a></li>
+                    <li class="breadcrumb-item">Product</li>
+                    <li class="breadcrumb-item active">Create Product</li>
+                </ol>
+            </nav>
+        </div><!-- End Page Title -->
+
+        <section class="section">
+            <div class="row">
+                <div class="col-lg-10">
+
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Create Product</h5>
+
+                            <form method="post" action="{{route('admin.create.product')}}">
+                                @csrf
+                                <div class="row mb-3">
+                                    <label for="inputName" class="col-sm-2 col-form-label">Product Name: </label>
+                                    <div class="col-sm-10">
+                                        <input  name="name" type="text" class="form-control" required="" placeholder="iPad Pro M1">
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="inputQuantity" class="col-sm-2 col-form-label">Quantity: </label>
+                                    <div class="col-sm-10">
+                                        <input  min="1" name="qty" type="number" class="form-control" required="" placeholder="99">
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="inputPrice" class="col-sm-2 col-form-label">Price: </label>
+                                    <div class="col-sm-10">
+                                        <input  name="price" type="text" class="form-control" required="" placeholder="88.88">
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="inputCategory" class="col-sm-2 col-form-label">Category</label>
+                                    <div class="col-sm-10">
+                                        <select name="category_id" class="form-control">
+                                            @foreach($categories as $category)
+                                                <option value="{{$category->id}}">{{$category->name}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="inputImage" class="col-sm-2 col-form-label">Image: </label>
+                                    <div class="col-sm-10">
+                                        <input  name="img" type="text" class="form-control" required="" placeholder="https://cdn.tgdd.vn/Products/Images/522/237695/ipad-pro-m1-11-inch-wifi-2-1.jpg">
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="inputPassword" class="col-sm-2 col-form-label">Status: </label>
+                                    <div class="col-sm-10">
+                                        <select name="status" class="form-control">
+                                            <option value="ACTIVE">ACTIVE</option>
+                                            <option value="DEACTIVE">DEACTIVE</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="inputDesc" class="col-sm-2 col-form-label">Description</label>
+                                    <div class="col-sm-10">
+                                        <textarea name="desc" class="form-control" required="" placeholder="iPad Pro M1 11-inch WiFi 128GB Tablet (2021)" style="height: 100px"></textarea>
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <div class="col-sm-10">
+                                        <button type="submit" class="btn btn-primary">Create Product</button>
+                                    </div>
+                                </div>
+
+                            </form><!-- End General Form Elements -->
+
+                        </div>
+                    </div>
+
+                </div>
             </div>
-            <div class="form-group col-6" style="margin: 16px 0">
-                <label for="quantity" style="margin: 8px 0">Quantity:</label>
-                <input name="qty" type="number" min="1" class="form-control" id="qty"  placeholder="quantity"
-                          onfocus="this.placeholder = ''"
-                          onblur="this.placeholder = 'quantity'" required="">
-            </div>
-            <div class="form-group col-6" style="margin: 16px 0">
-                <label for="price" style="margin: 8px 0">Price:</label>
-                <input name="price" type="text" class="form-control" id="price"  placeholder="price"
-                          onfocus="this.placeholder = ''"
-                          onblur="this.placeholder = 'price'" required="">
-            </div>
-            <div class="form-group col-6" style="margin: 16px 0">
-                <label for="img" style="margin: 8px 0">Image:</label>
-                <input name="img" type="text" class="form-control" id="image"  placeholder="image"
-                          onfocus="this.placeholder = ''"
-                          onblur="this.placeholder = 'image'" required="">
-            </div>
-            <div class="form-group col-12" style="margin: 16px 0">
-                <label for="desc" style="margin: 8px 0">Description:</label>
-                <textarea name="desc" id="desc" class="single-textarea w-100" style="height: 200px; resize: none;" placeholder="description"
-                          onfocus="this.placeholder = ''"
-                          onblur="this.placeholder = 'description'" required=""></textarea>
-            </div>
-        </div>
-        <div  style="margin: 24px 0">
-            <button type="submit" class="btn btn-primary" style="padding: 8px 16px; float: right">Submit</button>
-        </div>
-    </form>
-    <a href="{{route('home')}}" class="text-danger text-decoration-none" style="padding: 8px 16px; float: left">Back to Home</a>
-</div>
-</body>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" ></script>
-</html>
+        </section>
+
+    </main><!-- End #main -->
+@endsection

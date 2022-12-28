@@ -20,7 +20,9 @@ return new class extends Migration
             $table->float('price');
             $table->string('img');
             $table->string('desc');
+            $table->string('status');
             $table->foreignIdFor(\App\Models\Category::class)->unsigned();
+//            $table->foreign('category_id')->references('id')->on('categories');
             $table->timestamps();
         });
     }

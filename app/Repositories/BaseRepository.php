@@ -23,11 +23,24 @@ class BaseRepository implements RepositoryInterface
         return $this->model->all();
     }
 
+    public function getAllByStatus()
+    {
+        return $this->model->all()->where('status', '=', 'ACTIVE');
+    }
+
     public function findById($id)
     {
         $result = $this->model->find($id);
 
         return $result;
+    }
+
+    public function findByIdAndStatus($id)
+    {
+        $result = $this->model->find($id);
+        if ($result['status']=='ACTIVE'){
+            return $result;
+        }
     }
 
     public function create($data)

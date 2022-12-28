@@ -10,5 +10,6 @@ Route::group(['prefix' => 'products'],function (){
     Route::get('create', [\App\Http\Controllers\Admin\AdminProductController::class, 'createProcess'])->name('admin.show.form.create');
     Route::get('delete', [\App\Http\Controllers\Admin\AdminProductController::class, 'deleteProcess'])->name('admin.choose.product.delete');
     Route::post('create', [\App\Http\Controllers\Admin\AdminProductController::class, 'create'])->name('admin.create.product');
+    Route::post('delete/{id}', [\App\Http\Controllers\Admin\AdminProductController::class, 'hiden'])->name('admin.hiden.product');
     Route::delete('{id}', [\App\Http\Controllers\Admin\AdminProductController::class, 'delete'])->name('admin.delete.product');
 });

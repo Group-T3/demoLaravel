@@ -26,14 +26,18 @@ class ProductService implements ProductServiceInterfaces
 
     public function create($data)
     {
-
-        $data['category_id'] = 1;
         return $this->productRepositoryInterfaces->create($data);
     }
 
     public function update($id, $data)
     {
         return $this->productRepositoryInterfaces->update($id, $data);
+    }
+
+    public function hiden($id){
+        $data = $this->productRepositoryInterfaces->findById($id);
+        $data->status = 'DELETE';
+        return $this->productRepositoryInterfaces->hiden($id, $data);
     }
 
     public function delete($id)

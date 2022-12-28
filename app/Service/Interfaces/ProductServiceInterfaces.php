@@ -11,6 +11,7 @@ interface ProductServiceInterfaces
     public function findById($id);
 
     public function findByIdAndStatus($id);
+    public function hiden($id);
 
     public function create($data);
 

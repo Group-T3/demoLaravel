@@ -30,7 +30,7 @@
                 <td>{{$product->qty}}</td>
                 <td>{{$product->price}}</td>
                 <td>{{$product->desc}}</td>
-                <td>{{$product->category_id}}</td>
+                <td>{{$product->category->name}}</td>
             </tr>
             </tbody>
         @endforeach

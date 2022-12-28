@@ -19,7 +19,7 @@
                 <div class="">Quantity: {{$product->qty}}</div>
                 <div class="">Price: {{$product->price}}</div>
                 <div class="">Description: {{$product->desc}}</div>
-                <div class="">Category: <a class="text-decoration-none" href="/categories/detail/{{$product->category_id}}">{{$product->category_id}}</a> </div>
+                <div class="">Category: <a class="text-decoration-none" href="/categories/detail/{{$product->category_id}}">{{$product->category->name}}</a> </div>
             </div>
         </div>
     </div>

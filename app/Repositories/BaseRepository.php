@@ -43,6 +43,15 @@ class BaseRepository implements RepositoryInterface
         }
     }
 
+    public function hiden($id)
+    {
+        $record = $this->model->find($id);
+        $record->status = 'DELETE';
+        $record->save();
+        $record->refresh();
+        return $record;
+    }
+
     public function create($data)
     {
         $result = $this->model->newQuery()->create($data);
@@ -57,6 +66,7 @@ class BaseRepository implements RepositoryInterface
         $record->refresh();
         return $record;
     }
+
     public function delete($id)
     {
         $result = $this->model->find($id);

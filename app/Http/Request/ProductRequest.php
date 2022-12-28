@@ -29,6 +29,7 @@ class ProductRequest extends FormRequest
             'price' => 'numeric|between:0,999999.99',
             'img' => 'required|url',
             'desc' => 'required',
+            'category_id' => 'required',
             'status' => 'required',
         ];
     }

@@ -40,6 +40,12 @@ class AdminProductController extends Controller
         return view('admin.product.create')->with('categories', Category::all());
     }
 
+    public function hiden($id)
+    {
+        $this->productServiceInterfaces->hiden($id);
+        return redirect(route('admin.show.all.products'));
+    }
+
     public function delete($id)
     {
         return $this->productServiceInterfaces->delete($id);

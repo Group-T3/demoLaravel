@@ -21,8 +21,9 @@ return new class extends Migration
             $table->string('img');
             $table->string('desc');
             $table->string('status');
-            $table->foreignIdFor(\App\Models\Category::class)->unsigned();
-//            $table->foreign('category_id')->references('id')->on('categories');
+//            $table->foreignIdFor(\App\Models\Category::class)->unsigned();
+            $table->unsignedBigInteger('category_id');
+            $table->foreign('category_id')->references('id')->on('categories');
             $table->timestamps();
         });
     }

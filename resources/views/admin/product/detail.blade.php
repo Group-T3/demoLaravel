@@ -45,9 +45,12 @@
                                 <div class="col-md-6">
                                     <label for="inputCategory" class="form-label">Category</label>
                                     <select name="category_id" class="form-control">
-                                        <option value="{{$product->category_id}}">{{$product->category_id}}</option>
+                                        <option value="{{$product->category_id}}">{{$product->category->name}}</option>
                                         @foreach($categories as $category)
-                                            <option value="{{$category->id}}">{{$category->name}}</option>
+                                            @if($product->category_id != $category->id)
+                                                <option value="{{$category->id}}">{{$category->name}}</option>
+                                            @else
+                                            @endif
                                         @endforeach
                                     </select>
                                 </div>
@@ -84,6 +87,14 @@
                                     <button type="reset" class="btn btn-secondary">Reset</button>
                                 </div>
                             </form><!-- End Multi Columns Form -->
+                            <div>
+                                <h5 class="text-danger" style="margin: 8px 0">If you want to delete this product?
+                                     Please click the button below to delete!</h5>
+                            </div>
+                            <form method="POST" action="{{route('admin.hiden.product', ['id' => $product->id])}}">
+                                @csrf
+                                <button type="submit" class="btn btn-danger" >Delete</button>
+                            </form>
                         </div>
                     </div>
 

@@ -12,45 +12,25 @@
                 </ol>
             </nav>
         </div><!-- End Page Title -->
+       <form method="post" action="{{route('admin.show.products')}}">
+           @csrf
+           <div class="d-flex " style="float: right">
+               <label class="" style="margin: 9px 24px 0 0">
+                   <select class="form-control" style="width: 150px" name="category_id">
+                       <option datd-display="" value="Search">Search</option>
+                       @foreach($categories as $category)
+                           <option value="{{$category->id}}">{{$category->name}}</option>
+                       @endforeach
+                   </select>
+               </label>
+               <button type="submit" class="btn btn-primary" style="margin: 8px 0">Search</button>
+               <button class="btn btn-secondary" style="margin: 8px 16px "><a href="{{route('admin.show.all.products')}}" style="color: white">Reset</a></button>
+           </div>
+       </form>
 
         <section class="section">
             <div class="row">
                 <div class="col-lg-10">
-{{--                    <div class="card">--}}
-{{--                        <div class="card-body">--}}
-{{--                            <h5 class="card-title">Default Table</h5>--}}
-
-{{--                            <!-- Default Table -->--}}
-{{--                            <table class="table">-->--}}
-{{--                                <thead>-->--}}
-{{--                                <tr>-->--}}
-{{--                                    <th scope="col">#</th>--}}
-{{--                                    <th scope="col">Name</th>--}}
-{{--                                    <th scope="col">Position</th>--}}
-{{--                                    <th scope="col">Age</th>--}}
-{{--                                    <th scope="col">Start Date</th>--}}
-{{--                                </tr>--}}
-{{--                                </thead>--}}
-{{--                                <tbody>--}}
-{{--                                <tr>--}}
-{{--                                    <th scope="row">1</th>--}}
-{{--                                    <td>Brandon Jacob</td>--}}
-{{--                                    <td>Designer</td>--}}
-{{--                                    <td>28</td>--}}
-{{--                                    <td>2016-05-25</td>--}}
-{{--                                </tr>--}}
-{{--                                <tr>--}}
-{{--                                    <th scope="row">2</th>--}}
-{{--                                    <td>Bridie Kessler</td>--}}
-{{--                                    <td>Developer</td>--}}
-{{--                                    <td>35</td>--}}
-{{--                                    <td>2014-12-05</td>--}}
-{{--                                </tr>--}}
-{{--                                </tbody>--}}
-{{--                            </table>--}}
-{{--                            <!-- End Default Table Example -->--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
 
                     <div class="card">
                         <div class="card-body">
@@ -65,7 +45,7 @@
                                     <th scope="col">Quantity</th>
                                     <th scope="col">Price</th>
                                     <th scope="col">Description</th>
-                                    <th scope="col">Category_id</th>
+                                    <th scope="col">Category</th>
                                     <th scope="col">Status</th>
                                 </tr>
                                 </thead>
@@ -77,7 +57,7 @@
                                         <td>{{$product->qty}}</td>
                                         <td>{{$product->price}}</td>
                                         <td>{{$product->desc}}</td>
-                                        <td>{{$product->category_id}}</td>
+                                        <td>{{$product->category->name}}</td>
                                         <td>{{$product->status}}</td>
                                     </tr>
                                     </tbody>

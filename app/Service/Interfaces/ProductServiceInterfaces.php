@@ -8,9 +8,12 @@ interface ProductServiceInterfaces
 
     public function findAllByStatus();
 
+    public function findAllBy($key, $value);
+
     public function findById($id);
 
     public function findByIdAndStatus($id);
+
     public function hiden($id);
 
     public function create($data);

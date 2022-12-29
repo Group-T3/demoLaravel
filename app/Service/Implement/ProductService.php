@@ -54,4 +54,9 @@ class ProductService implements ProductServiceInterfaces
     {
         return $this->productRepositoryInterfaces->findByIdAndStatus($id);
     }
+
+    public function findAllBy($key, $value)
+    {
+        return $this->productRepositoryInterfaces->getAllBy($key, $value);
+    }
 }

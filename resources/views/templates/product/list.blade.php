@@ -22,11 +22,14 @@
             <th scope="col">Category</th>
         </tr>
         </thead>
+        <div class="d-none">{{$i=0}}</div>
         @foreach($products as $product)
+            <div class="d-none">{{$i++}}</div>
             <tbody>
             <tr>
-                <td><a class="text-decoration-none" href="detail/{{$product->id}}">{{$product->id}}</a></td>
-                <td><a class="text-decoration-none" href="detail/{{$product->id}}">{{$product->name}}</a></td>
+                <td>{{$i}}</td>
+                <td><a class="text-decoration-none" href="detail/{{$product->id}}">{{$product->name}}</a>
+                </td>
                 <td>{{$product->qty}}</td>
                 <td>{{$product->price}}</td>
                 <td>{{$product->desc}}</td>

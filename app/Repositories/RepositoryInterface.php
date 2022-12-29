@@ -12,6 +12,8 @@ interface RepositoryInterface
 
     public function getAllByStatus();
 
+    public function getAllBy($key, $value);
+
     /**
      * Get one
      * @param $id

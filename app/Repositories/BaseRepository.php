@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Repositories;
+
 use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Database\Eloquent\Model;
 
@@ -12,7 +13,8 @@ class BaseRepository implements RepositoryInterface
     protected mixed $model;
 
     /** @throws BindingResolutionException */
-    public function __construct() {
+    public function __construct()
+    {
         if ($this->model_class) {
             $this->model = app()->make($this->model_class);
         }
@@ -28,6 +30,11 @@ class BaseRepository implements RepositoryInterface
         return $this->model->all()->where('status', '=', 'ACTIVE');
     }
 
+    public function getAllBy($key, $value)
+    {
+        return $this->model->all()->where($key, '=', $value);
+    }
+
     public function findById($id)
     {
         $result = $this->model->find($id);
@@ -38,7 +45,7 @@ class BaseRepository implements RepositoryInterface
     public function findByIdAndStatus($id)
     {
         $result = $this->model->find($id);
-        if ($result['status']=='ACTIVE'){
+        if ($result['status'] == 'ACTIVE') {
             return $result;
         }
     }

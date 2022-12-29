@@ -11,6 +11,5 @@
                 </ol>
             </nav>
         </div>
-
     </main>
 @endsection

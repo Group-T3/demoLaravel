@@ -21,6 +21,8 @@ interface RepositoryInterface
      */
     public function findById($id);
 
+    public function findByIdAndStatus($id);
+
     /**
      * Create
      * @param array $attributes

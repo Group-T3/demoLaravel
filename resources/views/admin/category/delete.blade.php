@@ -7,7 +7,7 @@
             <h1>Category</h1>
             <nav>
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="{{route('admin')}}">Home</a></li>
+                    <li class="breadcrumb-item"><a href="{{route('admin.home')}}">Home</a></li>
                     <li class="breadcrumb-item">Category</li>
                     <li class="breadcrumb-item active">Delete Category</li>
                 </ol>

@@ -30,7 +30,7 @@
                     </a>
                     <ul class="more">
                         @if(Auth::user()->role_id == 1)
-                            <li><a href="{{route('admin')}}">Admin</a></li>
+                            <li><a href="{{route('admin.home')}}">Admin</a></li>
                         @elseif(Auth::user()->role_id == 2)
                             <li><a href="#">Moderator</a></li>
                         @else

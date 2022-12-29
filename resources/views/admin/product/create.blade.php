@@ -6,7 +6,7 @@
             <h1>Product</h1>
             <nav>
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="{{route('admin')}}">Home</a></li>
+                    <li class="breadcrumb-item"><a href="{{route('admin.home')}}">Home</a></li>
                     <li class="breadcrumb-item">Product</li>
                     <li class="breadcrumb-item active">Create Product</li>
                 </ol>

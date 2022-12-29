@@ -4,7 +4,7 @@ namespace App\Http\Request;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UserRequest extends FormRequest
+class CreateUserRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,16 +25,19 @@ class UserRequest extends FormRequest
     {
         return [
             'fullname' => 'required',
-            'address'  => 'required',
-            'email'  => ['required', 'email:rfc',
+            'avt' => 'required',
+            'address' => 'required',
+            'email' => ['required', 'email:rfc',
                 function ($attribute, $value, $fail) {
                     if (!filter_var($value, FILTER_VALIDATE_EMAIL)) {
                         $fail($attribute . ' is invalid.');
                     }
                 }],
-            'phonenumber'  => 'required',
+            'phonenumber' => 'required',
             'status' => 'required',
             'role_id' => 'required',
+            'password' => ['required', 'string'],
+            'passwordConfirm' => ['required', 'string'],
         ];
     }
 
@@ -47,6 +50,17 @@ class UserRequest extends FormRequest
             'email.min' => 'Email must have at least 2 characters.',
             'status.required' => 'Status is required.',
             'role_id.required' => 'Role is required.',
+            'password.required' => 'Password is required.',
+            'passwordConfirm.required' => 'PasswordConfirm is required.',
         ];
+    }
+
+    public function withValidator($validator)
+    {
+        $validator->after(function ($validator) {
+            if ($this->input('password') != $this->input('passwordConfirm')) {
+                $validator->errors()->add('password', 'Password or PasswordConfirm Incorrect');
+            }
+        });
     }
 }

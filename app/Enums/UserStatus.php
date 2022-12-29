@@ -8,6 +8,6 @@ final class UserStatus extends Enum
 {
     const ACTIVE = 'ACTIVE';
     const DEACTIVE = 'DEACTIVE';
-    const BANNER = 'BANNER';
+    const BAN = 'BAN';
     const DELETE = 'DELETE';
 }

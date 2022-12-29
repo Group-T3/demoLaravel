@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Request\UserRequest;
+use App\Http\Request\Auth\ChangePasswordRequest;
+use App\Http\Request\MyRequest\UpdateProfileRequest;
+use App\Models\User;
 use App\Service\Interfaces\UserServiceInterfaces;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -15,15 +18,41 @@ class UserController extends Controller
         $this->userServiceInterfaces = $userServiceInterfaces;
     }
 
-    public function index()
-    {
-        $users = $this->userServiceInterfaces->findAllByStatus();
-        return view('templates.user.list')->with('users', $users);
-    }
-
-    public function detail($id)
+    public function myprofile($id)
     {
         $user = $this->userServiceInterfaces->findByIdAndStatus($id);
-        return view('templates.user.detail')->with('user', $user);
+        return view('templates.myprofile')->with('user', $user);
+    }
+
+    public function update($id, UpdateProfileRequest $request)
+    {
+        $validated = $request->validated();
+        $this->userServiceInterfaces->update($id, $validated);
+        return redirect(route('myprofile', $id));
+    }
+
+    public function changePassword(ChangePasswordRequest $request)
+    {
+        $validator = $request->validated();
+
+        $userId = auth()->user()->id;
+
+        if (!Hash::check($request->password, auth()->user()->password)){
+            return response()->json([
+                'message' => 'Password old incorrect'
+            ], 400);
+        }
+
+        if ($request->newpassword !== $request->newpasswordConfirm) {
+            return response()->json([
+                'message' => 'Password or PasswordConfirm incorrect'
+            ], 400);
+        }
+
+        $user = User::where('id', $userId)->update(
+            ['password' => bcrypt($request->newpassword)]
+        );
+
+        return redirect(route('myprofile', $userId));
     }
 }

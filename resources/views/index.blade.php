@@ -16,8 +16,6 @@
             <li><a href="{{route('home')}}">Home</a></li>
             <li><a href="{{route('show.all.products')}}">Product</a></li>
             <li><a href="{{route('show.all.categories')}}">Category</a></li>
-            <li><a href="{{route('show.all.users')}}">User</a></li>
-            <li><a href="{{route('show.all.roles')}}">Role</a></li>
             @if(!Auth::user())
                 <li>
                     <a class="" href="{{route('auth.login')}}">
@@ -35,7 +33,7 @@
                             <li><a href="#">Moderator</a></li>
                         @else
                         @endif
-                        <li><a href="#">AccountManager</a></li>
+                        <li><a href="{{route('myprofile', auth::user()->id)}}">AccountManager</a></li>
                         <li><a href="#">Setting</a></li>
                         <li>
                             <a href="{{route('auth.logout')}}">Logout</a>

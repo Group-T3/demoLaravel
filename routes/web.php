@@ -50,9 +50,6 @@ Route::prefix('products')->middleware('auth')->group(function () {
 Route::prefix('categories')->middleware('auth')->group(function () {
     Route::get('list', [CategoryController::class, 'getList'])->name('show.all.categories');
     Route::get('detail/{id}', [CategoryController::class, 'getDetail'])->name('show.detail.category');
-    Route::put('update/{id}', [CategoryController::class, 'updateCategory'])->name('update.category');
-    Route::post('create', [CategoryController::class, 'createCategory'])->name('create.category');
-    Route::delete('{id}', [CategoryController::class, 'deleteCategory'])->name('delete.category');
 });
 
 //Admin

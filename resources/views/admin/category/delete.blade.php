@@ -4,12 +4,12 @@
     <main id="main" class="main">
 
         <div class="pagetitle">
-            <h1>Product</h1>
+            <h1>Category</h1>
             <nav>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{route('admin')}}">Home</a></li>
-                    <li class="breadcrumb-item">Product</li>
-                    <li class="breadcrumb-item active">Delete Product</li>
+                    <li class="breadcrumb-item">Category</li>
+                    <li class="breadcrumb-item active">Delete Category</li>
                 </ol>
             </nav>
         </div><!-- End Page Title -->
@@ -20,11 +20,11 @@
 
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title text-danger">Delete Product</h5>
-                            <p>If you perform a product deletion, it will be removed from the product list!
+                            <h5 class="card-title text-danger">Delete Category</h5>
+                            <p>If you perform a category deletion, it will be removed from the category list!
                                 This action cannot be undone...You need to think carefully before doing this!!!</p>
 
-{{--                            <form class="row g-3" action="{{route('admin.delete.product')}}" method="post">--}}
+{{--                            <form class="row g-3" action="{{route('admin.delete.category')}}" method="post">--}}
 {{--                                @csrf--}}
 {{--                                <div class="col-md-6">--}}
 {{--                                    <label for="validation" class="form-label">ID: </label>--}}

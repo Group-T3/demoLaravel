@@ -34,14 +34,6 @@ Route::prefix('users')->middleware('auth')->group(function () {
     Route::post('changePass', [UserController::class, 'changePassword'])->name('change-password');
 });
 
-Route::prefix('roles')->middleware('auth')->group(function () {
-    Route::get('list', [RoleController::class, 'index'])->name('show.all.roles');
-    Route::get('detail/{id}', [RoleController::class, 'detail'])->name('show.role');
-    Route::put('update/{id}', [RoleController::class, 'update'])->name('update.role');
-    Route::post('create', [RoleController::class, 'create'])->name('create.role');
-    Route::delete('{id}', [RoleController::class, 'delete'])->name('delete.role');
-});
-
 Route::prefix('products')->middleware('auth')->group(function () {
     Route::get('list', [ProductController::class, 'index'])->name('show.all.products');
     Route::get('detail/{id}', [ProductController::class, 'detail'])->name('show.product');

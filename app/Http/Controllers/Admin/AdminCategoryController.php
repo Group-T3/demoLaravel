@@ -32,6 +32,7 @@ class AdminCategoryController extends Controller
     {
         return view('admin.category.create');
     }
+
     public function createCategory(CategoryRequest $request)
     {
         $validated = $request->validated();
@@ -56,6 +57,7 @@ class AdminCategoryController extends Controller
     {
         return view('admin.category.delete');
     }
+
     public function deleteCategory($id)
     {
         $this->categoryServiceInterfaces->delete($id);

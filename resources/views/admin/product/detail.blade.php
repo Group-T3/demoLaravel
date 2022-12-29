@@ -48,7 +48,9 @@
                                         <option value="{{$product->category_id}}">{{$product->category->name}}</option>
                                         @foreach($categories as $category)
                                             @if($product->category_id != $category->id)
-                                                <option value="{{$category->id}}">{{$category->name}}</option>
+                                                @if($category->status == 'ACTIVE')
+                                                    <option value="{{$category->id}}">{{$category->name}}</option>
+                                                @endif
                                             @else
                                             @endif
                                         @endforeach

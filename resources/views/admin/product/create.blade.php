@@ -46,7 +46,9 @@
                                     <div class="col-sm-10">
                                         <select name="category_id" class="form-control">
                                             @foreach($categories as $category)
-                                                <option value="{{$category->id}}">{{$category->name}}</option>
+                                                @if($category->status == 'ACTIVE')
+                                                    <option value="{{$category->id}}">{{$category->name}}</option>
+                                                @endif
                                             @endforeach
                                         </select>
                                     </div>

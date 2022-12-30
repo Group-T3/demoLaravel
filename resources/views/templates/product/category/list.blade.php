@@ -19,10 +19,12 @@
                 <th scope="col">Description</th>
             </tr>
             </thead>
+            <div class="d-none">{{$i=0}}</div>
             @foreach($categories as $category)
+                <div class="d-none">{{$i++}}</div>
                 <tbody>
                 <tr>
-                    <td><a class="text-decoration-none" href="detail/{{$category->id}}">{{$category->id}}</a></td>
+                    <td>{{$i}}</td>
                     <td><a class="text-decoration-none" href="detail/{{$category->id}}">{{$category->name}}</a></td>
                     <td>{{$category->desc}}</td>
                 </tr>

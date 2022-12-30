@@ -172,21 +172,6 @@
                             <i class="bi bi-circle"></i><span>Delete Product</span>
                         </a>
                     </li>
-                    <li>
-                        <a href="#">
-                            <i class="bi bi-circle"></i><span>Modal</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <i class="bi bi-circle"></i><span>Progress</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <i class="bi bi-circle"></i><span>Spinners</span>
-                        </a>
-                    </li>
                 </ul>
             </li><!-- End Components Nav -->
 
@@ -196,23 +181,18 @@
                 </a>
                 <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                     <li>
-                        <a href="#">
-                            <i class="bi bi-circle"></i><span>Form Elements</span>
+                        <a href="{{route('admin.show.all.categories')}}">
+                            <i class="bi bi-circle"></i><span>List Category</span>
                         </a>
                     </li>
                     <li>
-                        <a href="#">
-                            <i class="bi bi-circle"></i><span>Form Layouts</span>
+                        <a href="{{route('admin.form.create.category')}}">
+                            <i class="bi bi-circle"></i><span>Create Category</span>
                         </a>
                     </li>
                     <li>
-                        <a href="#">
-                            <i class="bi bi-circle"></i><span>Form Editors</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <i class="bi bi-circle"></i><span>Form Validation</span>
+                        <a href="{{route('admin.choose.category.delete')}}">
+                            <i class="bi bi-circle"></i><span>Delete Category</span>
                         </a>
                     </li>
                 </ul>

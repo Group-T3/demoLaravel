@@ -38,4 +38,26 @@ class UserService implements UserServiceInterfaces
     {
         return $this->userRepositoryInterfaces->delete($id);
     }
+
+    public function findAllByStatus()
+    {
+        return $this->userRepositoryInterfaces->getAllByStatus();
+    }
+
+    public function findAllBy($key, $value)
+    {
+        return $this->userRepositoryInterfaces->getAllBy($key, $value);
+    }
+
+    public function findByIdAndStatus($id)
+    {
+        return $this->userRepositoryInterfaces->findByIdAndStatus($id);
+    }
+
+    public function hiden($id)
+    {
+        $data = $this->userRepositoryInterfaces->findById($id);
+        $data->status = 'DELETE';
+        return $this->userRepositoryInterfaces->hiden($id, $data);
+    }
 }

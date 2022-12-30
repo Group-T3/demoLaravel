@@ -146,7 +146,7 @@
         <ul class="sidebar-nav" id="sidebar-nav">
 
             <li class="nav-item">
-                <a class="nav-link " href="{{route('admin')}}">
+                <a class="nav-link " href="{{route('admin.home')}}">
                     <i class="bi bi-grid"></i>
                     <span>Dashboard</span>
                 </a>
@@ -223,18 +223,28 @@
                 </a>
                 <ul id="charts-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                     <li>
-                        <a href="#">
-                            <i class="bi bi-circle"></i><span>Chart.js</span>
+                        <a href="{{route('admin.show.all.users')}}">
+                            <i class="bi bi-circle"></i><span>List All User</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{route('admin.form.create.user')}}">
+                            <i class="bi bi-circle"></i><span>Create New User</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{route('admin.choose.user.delete')}}">
+                            <i class="bi bi-circle"></i><span>Delete User</span>
                         </a>
                     </li>
                     <li>
                         <a href="#">
-                            <i class="bi bi-circle"></i><span>ApexCharts</span>
+                            <i class="bi bi-circle"></i><span>List User Banned</span>
                         </a>
                     </li>
                     <li>
                         <a href="#">
-                            <i class="bi bi-circle"></i><span>ECharts</span>
+                            <i class="bi bi-circle"></i><span>List User Deleted</span>
                         </a>
                     </li>
                 </ul>

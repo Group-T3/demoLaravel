@@ -20,10 +20,13 @@ return new class extends Migration
             $table->string('address');
             $table->string('phonenumber');
             $table->string('email')->unique();
+            $table->string('status');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
-            $table->foreignIdFor(\App\Models\Role::class)->unsigned();
+//            $table->foreignIdFor(\App\Models\Role::class)->unsigned();
+            $table->unsignedBigInteger('role_id');
+            $table->foreign('role_id')->references('id')->on('roles');
             $table->timestamps();
         });
     }

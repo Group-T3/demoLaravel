@@ -17,30 +17,13 @@ class UserController extends Controller
 
     public function index()
     {
-        $users = $this->userServiceInterfaces->findAll();
+        $users = $this->userServiceInterfaces->findAllByStatus();
         return view('templates.user.list')->with('users', $users);
     }
 
     public function detail($id)
     {
-        $user = $this->userServiceInterfaces->findById($id);
+        $user = $this->userServiceInterfaces->findByIdAndStatus($id);
         return view('templates.user.detail')->with('user', $user);
-    }
-
-    public function create(UserRequest $request)
-    {
-        $validated = $request->validated();
-        return $this->userServiceInterfaces->create($validated);
-    }
-
-    public function delete($id)
-    {
-        return $this->userServiceInterfaces->delete($id);
-    }
-
-    public function update($id, UserRequest $request)
-    {
-        $validated = $request->validated();
-        return $this->userServiceInterfaces->update($id, $validated);
     }
 }

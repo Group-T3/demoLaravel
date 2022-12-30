@@ -60,7 +60,7 @@
                                 </div>
                             </form><!-- End Multi Columns Form -->
                             <div>
-                                <h5 class="text-danger" style="margin: 8px 0">If you want to delete this product?
+                                <h5 class="text-danger" style="margin: 8px 0">If you want to delete this category?
                                     Please click the button below to delete!</h5>
                             </div>
                             <form method="POST" action="{{route('admin.hiden.category', ['id' => $category->id])}}">

@@ -29,8 +29,9 @@ Route::prefix('auth')->group(function () {
 });
 
 Route::prefix('users')->middleware('auth')->group(function () {
-    Route::get('list', [UserController::class, 'index'])->name('show.all.users');
-    Route::get('detail/{id}', [UserController::class, 'detail'])->name('show.user');
+    Route::put('update/{id}', [UserController::class, 'update'])->name('update.profile');
+    Route::get('myprofile/{id}', [UserController::class, 'myprofile'])->name('myprofile');
+    Route::post('changePass', [UserController::class, 'changePassword'])->name('change-password');
 });
 
 Route::prefix('roles')->middleware('auth')->group(function () {

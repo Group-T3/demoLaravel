@@ -62,7 +62,7 @@ class UserController extends Controller
         }
 
         $user = User::where('id', $userId)->update(
-            ['password' => bcrypt($request->newpassword)]
+            ['password' => Hash::make($request->newpassword)]
         );
 
         return redirect(route('myprofile', $userId));

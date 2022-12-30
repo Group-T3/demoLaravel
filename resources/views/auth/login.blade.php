@@ -33,12 +33,19 @@
                         @csrf
                         <div class="form-group">
                             <input name="email" type="email" class="form-control" placeholder="Email" required>
+                            @if(isset($messageEmail))
+                                <span class="text-danger">{{$messageEmail}}</span>
+                            @endif
                         </div>
                         <div class="form-group">
-                            <input name="password" id="password-field" type="password" class="form-control" placeholder="Password"
+                            <input name="password" id="password-field" type="password" class="form-control"
+                                   placeholder="Password"
                                    required>
                             <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
                         </div>
+                        @if(isset($messagePassword))
+                            <span class="text-danger">{{$messagePassword}}</span>
+                        @endif
                         <div class="form-group">
                             <button type="submit" class="form-control btn btn-primary submit px-3">Sign In</button>
                         </div>
@@ -64,7 +71,11 @@
 <script src="{{asset('asset/js/popper.js')}}"></script>
 <script src="{{asset('asset/js/bootstrap.min.js')}}"></script>
 <script src="{{asset('asset/js/main.js')}}"></script>
-
+<script>
+    @if(isset($message))
+        alert({{$message}});
+    @endif
+</script>
 </body>
 </html>
 

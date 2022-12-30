@@ -54,6 +54,11 @@ class UserService implements UserServiceInterfaces
         return $this->userRepositoryInterfaces->findByIdAndStatus($id);
     }
 
+    public function findByEmail($email)
+    {
+        return $this->userRepositoryInterfaces->findByEmail($email);
+    }
+
     public function hiden($id)
     {
         $data = $this->userRepositoryInterfaces->findById($id);

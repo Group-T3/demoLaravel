@@ -19,7 +19,7 @@ class UserSeeder extends Seeder
             'phonenumber' => '0998689866',
             'status' => UserStatus::ACTIVE,
             'role_id' => '1',
-            'password' => bcrypt('123456'),
+            'password' => Hash::make('123456'),
         ]);
         $user2 = User:: Create([
             'fullname' => 'Moderator',
@@ -29,7 +29,7 @@ class UserSeeder extends Seeder
             'phonenumber' => '0989056896',
             'status' => UserStatus::ACTIVE,
             'role_id' => '2',
-            'password' => bcrypt('123456'),
+            'password' => Hash::make('123456'),
         ]);
         $user3 = User:: Create([
             'fullname' => 'User',

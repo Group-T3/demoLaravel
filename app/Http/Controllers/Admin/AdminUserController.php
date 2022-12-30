@@ -9,6 +9,7 @@ use App\Models\User;
 use App\Service\Interfaces\UserServiceInterfaces;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Hash;
 
 class AdminUserController extends Controller
 {
@@ -46,7 +47,10 @@ class AdminUserController extends Controller
     public function create(CreateUserRequest $request)
     {
         $validated = $request->validated();
+        $passwordHash = Hash::make($request->password);
+        $validated['password'] = $passwordHash;
         $this->userServiceInterfaces->create($validated);
+
         return redirect(route('admin.show.all.users'));
     }
 

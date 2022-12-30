@@ -50,6 +50,14 @@ class BaseRepository implements RepositoryInterface
         }
     }
 
+    public function findByEmail($email)
+    {
+//        $result = $this->model->find($email);
+        $result = $this->model->where('email', '=', $email)->first();
+
+        return $result;
+    }
+
     public function hiden($id)
     {
         $record = $this->model->find($id);

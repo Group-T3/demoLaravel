@@ -13,6 +13,7 @@ interface UserServiceInterfaces
     public function findById($id);
 
     public function findByIdAndStatus($id);
+    public function findByEmail($email);
 
     public function hiden($id);
     public function create($data);

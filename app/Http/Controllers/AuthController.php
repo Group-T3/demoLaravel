@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\UserStatus;
 use App\Http\Request\Auth\ChangePasswordRequest;
 use App\Http\Request\Auth\LoginRequest;
 use App\Http\Request\Auth\RegisterRequest;
@@ -10,7 +11,7 @@ use App\Service\Interfaces\UserServiceInterfaces;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cookie;
-use Illuminate\Support\Facades\Request;
+use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
@@ -26,20 +27,29 @@ class AuthController extends Controller
         return view('auth.login');
     }
 
-    /**
-     * Get a JWT via given credentials.
-     *
-     * @return \Illuminate\Http\JsonResponse
-     */
     public function login(LoginRequest $request)
     {
-//        $validated = $request->validated();
-//        $email = $validated['email'];
-//        $password = $validated['password'];
-//        $credentials = [
-//            'email' => $email,
-//            'password' => $password,
-//        ];
+        $user = $this->userServiceInterfaces->findByEmail($request->email);
+        if ($user == null) {
+            return view('auth.login')->with('messageEmail', 'Account not found');
+        }
+
+        if ($user->status == UserStatus::DELETE) {
+            return view('auth.login')->with('messageEmail', 'User has been deleted');
+        }
+
+        if ($user->status == UserStatus::BAN) {
+            return view('auth.login')->with('messageEmail', 'User has been banned');
+        }
+
+        if ($user->status == UserStatus::DEACTIVE) {
+            return view('auth.login')->with('messageEmail', 'User is not activated');
+        }
+
+        if (!Hash::check($request->password, $user->password)){
+            return view('auth.login')->with('messagePassword', 'Password is false');
+        }
+
         $token = Auth::attempt($request->validated());
         if ($token) {
             $this->createNewToken($token);
@@ -47,17 +57,9 @@ class AuthController extends Controller
 //            $request->session()->regenerate();
             return redirect()->route('home');
         }
-        return response()->json([
-            'status' => 'error',
-            'message' => 'Unauthorized',
-        ], 401);
+        return view('auth.login')->with('message', 'Undefault error, Please try again after....');
     }
 
-    /**
-     * Register a User.
-     *
-     * @return \Illuminate\Http\JsonResponse
-     */
     public function register(RegisterRequest $request)
     {
         $validated = $request->validated();
@@ -89,23 +91,12 @@ class AuthController extends Controller
         ], 200);
     }
 
-
-    /**
-     * Log the user out (Invalidate the token).
-     *
-     * @return \Illuminate\Http\JsonResponse
-     */
     public function logout()
     {
         Auth::logout();
         return redirect()->route('home');
     }
 
-    /**
-     * Refresh a token.
-     *
-     * @return \Illuminate\Http\JsonResponse
-     */
     public function refresh()
     {
         return $this->createNewToken(auth()->refresh());

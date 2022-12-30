@@ -23,6 +23,8 @@ interface RepositoryInterface
 
     public function findByIdAndStatus($id);
 
+    public function findByEmail($email);
+
     /**
      * Create
      * @param array $attributes

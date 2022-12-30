@@ -81,3 +81,8 @@ html {
 .more {
     list-style-type: none;
 }
+.upload {
+    content: '';
+    position: absolute;
+    inset: 0;
+}

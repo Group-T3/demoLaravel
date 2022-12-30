@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Request\CreateUserRequest;
 use App\Http\Request\UserRequest;
 use App\Models\Role;
+use App\Models\User;
 use App\Service\Interfaces\UserServiceInterfaces;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
@@ -73,6 +74,18 @@ class AdminUserController extends Controller
     public function update($id, UserRequest $request)
     {
         $validated = $request->validated();
+
+        if ($request->avt != null) {
+            $imageName = time() . '.' . $request->avt->extension();
+            // Public Folder
+            $request->avt->move(public_path('images'), $imageName);
+
+            $imageName = 'http://127.0.0.1:8000/images/' . $imageName;
+            $user = User::where('id', $id)->update(
+                ['avt' => $imageName]
+            );
+        }
+
         $this->userServiceInterfaces->update($id, $validated);
         return redirect(route('admin.show.all.users'));
     }

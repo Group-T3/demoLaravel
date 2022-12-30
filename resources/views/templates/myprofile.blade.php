@@ -113,7 +113,7 @@
                             <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
 
                                 <!-- Profile Edit Form -->
-                                <form method="post" action="{{route('update.profile', ['id'=> $user->id])}}">
+                                <form method="post" action="{{route('update.profile', ['id'=> $user->id])}}" enctype="multipart/form-data">
                                     @csrf
                                     @method('PUT')
                                     <div class="row mb-3">
@@ -122,8 +122,12 @@
                                         <div class="col-md-8 col-lg-9">
                                             <img src="{{$user->avt}}" alt="Profile">
                                             <div class="pt-2">
-                                                <a href="#" class="btn btn-primary btn-sm"
-                                                   title="Upload new profile image"><i class="bi bi-upload"></i></a>
+                                                <div class="btn btn-primary btn-sm">
+                                                    <label class="upload position-relative">
+                                                        <p class="mb-0"><i class="bi bi-cloud-arrow-up text-white fs-6"></i></p>
+                                                        <input class="opacity-0 hidden position-absolute" type="file" name="avt">
+                                                    </label>
+                                                </div>
                                                 <a href="#" class="btn btn-danger btn-sm"
                                                    title="Remove my profile image"><i class="bi bi-trash"></i></a>
                                             </div>

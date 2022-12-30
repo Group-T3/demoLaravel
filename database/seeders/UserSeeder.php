@@ -2,8 +2,10 @@
 
 namespace Database\Seeders;
 
+use App\Enums\UserStatus;
 use App\Models\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class UserSeeder extends Seeder
 {
@@ -15,8 +17,9 @@ class UserSeeder extends Seeder
             'address' => 'Ha Noi',
             'email' => 'admin@gmail.com',
             'phonenumber' => '0998689866',
+            'status' => UserStatus::ACTIVE,
             'role_id' => '1',
-            'password' => bcrypt('123456'),
+            'password' => Hash::make('123456'),
         ]);
         $user2 = User:: Create([
             'fullname' => 'Moderator',
@@ -24,17 +27,19 @@ class UserSeeder extends Seeder
             'address' => 'Hai Phong',
             'email' => 'mod@gmail.com',
             'phonenumber' => '0989056896',
+            'status' => UserStatus::ACTIVE,
             'role_id' => '2',
-            'password' => bcrypt('123456'),
+            'password' => Hash::make('123456'),
         ]);
         $user3 = User:: Create([
-            'fullname' => 'user',
+            'fullname' => 'User',
             'avt' => fake()->imageUrl(),
             'address' => 'TP Ho Chi Minh',
             'email' => 'user@gmail.com',
             'phonenumber' => '0986966906',
+            'status' => UserStatus::ACTIVE,
             'role_id' => '3',
-            'password' => bcrypt('123456'),
+            'password'  => Hash::make('123456'),
         ]);
     }
 }

@@ -15,6 +15,8 @@ class Product extends Model
         'price',
         'img',
         'desc',
+        'status',
+        'category_id',
     ];
 
     protected $hidden = [
@@ -25,6 +27,7 @@ class Product extends Model
 
     public function category()
     {
-        return $this->hasMany(Category::class);
+//        return $this->hasMany(Category::class);
+        return $this->belongsTo(Category::class, 'category_id', 'id');
     }
 }

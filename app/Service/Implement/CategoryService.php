@@ -16,7 +16,7 @@ class CategoryService implements CategoryServiceInterfaces
 
     public function findAll()
     {
-       return $this->categoryRepositoryInterfaces->getAll();
+        return $this->categoryRepositoryInterfaces->getAll();
     }
 
     public function findById($id)
@@ -37,5 +37,22 @@ class CategoryService implements CategoryServiceInterfaces
     public function delete($id)
     {
         return $this->categoryRepositoryInterfaces->delete($id);
+    }
+
+    public function findAllByStatus()
+    {
+        return $this->categoryRepositoryInterfaces->getAllByStatus();
+    }
+
+    public function findByIdAndStatus($id)
+    {
+        return $this->categoryRepositoryInterfaces->findByIdAndStatus($id);
+    }
+
+    public function hiden($id)
+    {
+        $data = $this->categoryRepositoryInterfaces->findById($id);
+        $data->status = 'DELETE';
+        return $this->categoryRepositoryInterfaces->hiden($id, $data);
     }
 }

@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Request\UserRequest;
+use App\Http\Request\Auth\ChangePasswordRequest;
+use App\Http\Request\MyRequest\UpdateProfileRequest;
+use App\Models\User;
 use App\Service\Interfaces\UserServiceInterfaces;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -15,28 +18,53 @@ class UserController extends Controller
         $this->userServiceInterfaces = $userServiceInterfaces;
     }
 
-    public function index() {
-        $users = $this->userServiceInterfaces->findAll();
-        return view('user.list')->with('users', $users);
+    public function myprofile($id)
+    {
+        $user = $this->userServiceInterfaces->findByIdAndStatus($id);
+        return view('templates.myprofile')->with('user', $user);
     }
 
-    public function detail($id) {
-        $user = $this->userServiceInterfaces->findById($id);
-        return view('user.detail')->with('user', $user);
-    }
-
-    public function create(UserRequest $request) {
+    public function update($id, UpdateProfileRequest $request)
+    {
         $validated = $request->validated();
-        return $this->userServiceInterfaces->create($validated);
+
+        if ($request->avt != null) {
+            $imageName = time() . '.' . $request->avt->extension();
+            // Public Folder
+            $request->avt->move(public_path('images'), $imageName);
+
+            $imageName = 'http://127.0.0.1:8000/images/' . $imageName;
+            $user = User::where('id', $id)->update(
+                ['avt' => $imageName]
+            );
+        }
+
+        $this->userServiceInterfaces->update($id, $validated);
+        return redirect(route('myprofile', $id));
     }
 
+    public function changePassword(ChangePasswordRequest $request)
+    {
+        $validator = $request->validated();
 
-    public function delete($id) {
-        return $this->userServiceInterfaces->delete($id);
-    }
+        $userId = auth()->user()->id;
 
-    public function update($id, UserRequest $request) {
-        $validated = $request->validated();
-        return $this->userServiceInterfaces->update($id, $validated);
+        if (!Hash::check($request->password, auth()->user()->password)){
+            return response()->json([
+                'message' => 'Password old incorrect'
+            ], 400);
+        }
+
+        if ($request->newpassword !== $request->newpasswordConfirm) {
+            return response()->json([
+                'message' => 'Password or PasswordConfirm incorrect'
+            ], 400);
+        }
+
+        $user = User::where('id', $userId)->update(
+            ['password' => Hash::make($request->newpassword)]
+        );
+
+        return redirect(route('myprofile', $userId));
     }
 }

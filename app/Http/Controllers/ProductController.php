@@ -16,27 +16,12 @@ class ProductController extends Controller
     }
 
     public function index() {
-        $products = $this->productServiceInterfaces->findAll();
-        return view('product.list')->with('products', $products);
+        $products = $this->productServiceInterfaces->findAllByStatus();
+        return view('templates.product.list')->with('products', $products);
     }
 
     public function detail($id) {
-        $product = $this->productServiceInterfaces->findById($id);
-        return view('product.detail')->with('product', $product);
-    }
-
-    public function create(ProductRequest $request) {
-        $validated = $request->validated();
-        return $this->productServiceInterfaces->create($validated);
-    }
-
-
-    public function delete($id) {
-        return $this->productServiceInterfaces->delete($id);
-    }
-
-    public function update($id, ProductRequest $request) {
-        $validated = $request->validated();
-        return $this->productServiceInterfaces->update($id, $validated);
+        $product = $this->productServiceInterfaces->findByIdAndStatus($id);
+        return view('templates.product.detail')->with('product', $product);
     }
 }

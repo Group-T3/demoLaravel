@@ -10,6 +10,10 @@ interface RepositoryInterface
      */
     public function getAll();
 
+    public function getAllByStatus();
+
+    public function getAllBy($key, $value);
+
     /**
      * Get one
      * @param $id
@@ -17,12 +21,17 @@ interface RepositoryInterface
      */
     public function findById($id);
 
+    public function findByIdAndStatus($id);
+
+    public function findByEmail($email);
+
     /**
      * Create
      * @param array $attributes
      * @return mixed
      */
     public function create($data);
+
     /**
      * Update
      * @param $id

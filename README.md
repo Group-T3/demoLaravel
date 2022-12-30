@@ -10,7 +10,7 @@
 10.  Generate app key: php artisan key:generate
 11.  Start the development server: php artisan serve
 12.  You can now access the server at http://localhost:8000
-///////////////////
-Create model: php artisan make:model <<file-name>> —- <<additional>>
-Create migration: $ php artisan make:migration <file-name> --table=<table-name>
-Create seeder: php artisan make:seeder <seeder-class-name>
+
+1. Create model: php artisan make:model <<file-name>> —- <<additional>>
+2. Create migration: $ php artisan make:migration <file-name> --table=<table-name>
+3. Create seeder: php artisan make:seeder <seeder-class-name>

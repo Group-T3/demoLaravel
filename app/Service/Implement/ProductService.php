@@ -16,7 +16,7 @@ class ProductService implements ProductServiceInterfaces
 
     public function findAll()
     {
-       return $this->productRepositoryInterfaces->getAll();
+        return $this->productRepositoryInterfaces->getAll();
     }
 
     public function findById($id)
@@ -34,8 +34,29 @@ class ProductService implements ProductServiceInterfaces
         return $this->productRepositoryInterfaces->update($id, $data);
     }
 
+    public function hiden($id){
+        $data = $this->productRepositoryInterfaces->findById($id);
+        $data->status = 'DELETE';
+        return $this->productRepositoryInterfaces->hiden($id, $data);
+    }
+
     public function delete($id)
     {
         return $this->productRepositoryInterfaces->delete($id);
+    }
+
+    public function findAllByStatus()
+    {
+        return $this->productRepositoryInterfaces->getAllByStatus();
+    }
+
+    public function findByIdAndStatus($id)
+    {
+        return $this->productRepositoryInterfaces->findByIdAndStatus($id);
+    }
+
+    public function findAllBy($key, $value)
+    {
+        return $this->productRepositoryInterfaces->getAllBy($key, $value);
     }
 }

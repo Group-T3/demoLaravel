@@ -15,12 +15,15 @@ return new class extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->unique();
+            $table->string('name');
             $table->integer('qty');
             $table->float('price');
             $table->string('img');
             $table->string('desc');
-            $table->foreignIdFor(\App\Models\Category::class)->unsigned();
+            $table->string('status');
+//            $table->foreignIdFor(\App\Models\Category::class)->unsigned();
+            $table->unsignedBigInteger('category_id');
+            $table->foreign('category_id')->references('id')->on('categories');
             $table->timestamps();
         });
     }

@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Repositories;
+
 use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Database\Eloquent\Model;
 
@@ -12,7 +13,8 @@ class BaseRepository implements RepositoryInterface
     protected mixed $model;
 
     /** @throws BindingResolutionException */
-    public function __construct() {
+    public function __construct()
+    {
         if ($this->model_class) {
             $this->model = app()->make($this->model_class);
         }
@@ -23,11 +25,46 @@ class BaseRepository implements RepositoryInterface
         return $this->model->all();
     }
 
+    public function getAllByStatus()
+    {
+        return $this->model->all()->where('status', '=', 'ACTIVE');
+    }
+
+    public function getAllBy($key, $value)
+    {
+        return $this->model->all()->where($key, '=', $value);
+    }
+
     public function findById($id)
     {
         $result = $this->model->find($id);
 
         return $result;
+    }
+
+    public function findByIdAndStatus($id)
+    {
+        $result = $this->model->find($id);
+        if ($result['status'] == 'ACTIVE') {
+            return $result;
+        }
+    }
+
+    public function findByEmail($email)
+    {
+//        $result = $this->model->find($email);
+        $result = $this->model->where('email', '=', $email)->first();
+
+        return $result;
+    }
+
+    public function hiden($id)
+    {
+        $record = $this->model->find($id);
+        $record->status = 'DELETE';
+        $record->save();
+        $record->refresh();
+        return $record;
     }
 
     public function create($data)
@@ -44,6 +81,7 @@ class BaseRepository implements RepositoryInterface
         $record->refresh();
         return $record;
     }
+
     public function delete($id)
     {
         $result = $this->model->find($id);

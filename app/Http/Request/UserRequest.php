@@ -25,7 +25,6 @@ class UserRequest extends FormRequest
     {
         return [
             'fullname' => 'required',
-            'avt'  => '',
             'address'  => 'required',
             'email'  => ['required', 'email:rfc',
                 function ($attribute, $value, $fail) {
@@ -34,7 +33,8 @@ class UserRequest extends FormRequest
                     }
                 }],
             'phonenumber'  => 'required',
-            'password'  => ['required', 'string', 'min:6'],
+            'status' => 'required',
+            'role_id' => 'required',
         ];
     }
 
@@ -45,9 +45,8 @@ class UserRequest extends FormRequest
             'address.required' => 'Address is required.',
             'phonenumber.required' => 'PhoneNumber is required.',
             'email.min' => 'Email must have at least 2 characters.',
-            'password.required' => 'Password is required.',
-            'password.min' => 'Password must have at least 4 characters.',
-            'password.string' => 'Password must be of type string.',
+            'status.required' => 'Status is required.',
+            'role_id.required' => 'Role is required.',
         ];
     }
 }

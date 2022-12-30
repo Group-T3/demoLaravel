@@ -141,9 +141,9 @@
                                                 <select name="role_id" class="form-control">
                                                     <option value="{{$user->role_id}}">{{$user->role->name}}</option>
                                                     @foreach($roles as $role)
-                                                        @if($user->role_id != $role->id)
-                                                            <option value="{{$role->id}}">{{$role->name}}</option>
-                                                        @else
+                                                            @if($user->role_id != $role->id && $role->status == 'ACTIVE')
+                                                                <option value="{{$role->id}}">{{$role->name}}</option>
+                                                            @else
                                                         @endif
                                                     @endforeach
                                                 </select>

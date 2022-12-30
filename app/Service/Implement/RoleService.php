@@ -38,4 +38,11 @@ class RoleService implements RoleServiceInterfaces
     {
         return $this->roleRepositoryInterfaces->delete($id);
     }
+
+    public function hiden($id)
+    {
+        $data = $this->roleRepositoryInterfaces->findById($id);
+        $data->status = 'DELETE';
+        return $this->roleRepositoryInterfaces->hiden($id, $data);
+    }
 }

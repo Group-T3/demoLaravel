@@ -3,6 +3,7 @@
 
 use App\Http\Controllers\Admin\AdminCategoryController;
 use App\Http\Controllers\Admin\AdminProductController;
+use App\Http\Controllers\Admin\AdminRoleController;
 use App\Http\Controllers\Admin\AdminUserController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
@@ -42,4 +43,15 @@ Route::group(['prefix' => 'users'],function (){
     Route::post('delete/{id}', [AdminUserController::class, 'hiden'])->name('admin.hiden.user');
     Route::get('delete', [AdminUserController::class, 'deleteProcess'])->name('admin.choose.user.delete');
     Route::delete('{id}', [AdminUserController::class, 'delete'])->name('admin.delete.user');
+});
+
+Route::group(['prefix' => 'roles'],function (){
+    Route::get('list', [AdminRoleController::class, 'index'])->name('admin.show.all.roles');
+    Route::get('detail/{id}', [AdminRoleController::class, 'detail'])->name('admin.show.role');
+    Route::put('update/{id}', [AdminRoleController::class, 'update'])->name('admin.update.role');
+    Route::get('create', [AdminRoleController::class, 'createProcess'])->name('admin.form.create.role');
+    Route::post('create', [AdminRoleController::class, 'create'])->name('admin.create.role');
+    Route::post('delete/{id}', [AdminRoleController::class, 'hiden'])->name('admin.hiden.role');
+    Route::get('delete', [AdminRoleController::class, 'deleteProcess'])->name('admin.choose.role.delete');
+    Route::delete('{id}', [AdminRoleController::class, 'delete'])->name('admin.delete.role');
 });

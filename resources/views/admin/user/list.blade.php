@@ -19,7 +19,9 @@
                    <select class="form-control" style="width: 150px" name="role_id">
                        <option datd-display="" value="Search">Search</option>
                        @foreach($roles as $role)
-                           <option value="{{$role->id}}">{{$role->name}}</option>
+                           @if($role->status == 'ACTIVE')
+                               <option value="{{$role->id}}">{{$role->name}}</option>
+                           @endif
                        @endforeach
                    </select>
                </label>

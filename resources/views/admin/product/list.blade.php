@@ -19,7 +19,9 @@
                    <select class="form-control" style="width: 150px" name="category_id">
                        <option datd-display="" value="Search">Search</option>
                        @foreach($categories as $category)
-                           <option value="{{$category->id}}">{{$category->name}}</option>
+                           @if($category->status == 'ACTIVE')
+                               <option value="{{$category->id}}">{{$category->name}}</option>
+                           @endif
                        @endforeach
                    </select>
                </label>

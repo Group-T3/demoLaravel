@@ -256,18 +256,18 @@
                 </a>
                 <ul id="icons-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                     <li>
-                        <a href="#">
-                            <i class="bi bi-circle"></i><span>Bootstrap Icons</span>
+                        <a href="{{route('admin.show.all.roles')}}">
+                            <i class="bi bi-circle"></i><span>List Role</span>
                         </a>
                     </li>
                     <li>
-                        <a href="#">
-                            <i class="bi bi-circle"></i><span>Remix Icons</span>
+                        <a href="{{route('admin.form.create.role')}}">
+                            <i class="bi bi-circle"></i><span>Create Role</span>
                         </a>
                     </li>
                     <li>
-                        <a href="#">
-                            <i class="bi bi-circle"></i><span>Boxicons</span>
+                        <a href="{{route('admin.choose.role.delete')}}">
+                            <i class="bi bi-circle"></i><span>Delete Role</span>
                         </a>
                     </li>
                 </ul>

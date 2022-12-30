@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Request\RoleRequest;
 use App\Service\Interfaces\RoleServiceInterfaces;
 use Illuminate\Routing\Controller;
 
-class RoleController extends Controller
+class AdminRoleController extends Controller
 {
     private RoleServiceInterfaces $roleServiceInterfaces;
 
@@ -18,21 +18,37 @@ class RoleController extends Controller
     public function index()
     {
         $roles = $this->roleServiceInterfaces->findAll();
-        return view('templates.user.role.list')->with('roles', $roles);
+        return view('admin.role.list')->with('roles', $roles);
     }
 
     public function detail($id)
     {
         $role = $this->roleServiceInterfaces->findById($id);
-        return view('templates.user.role.detail')->with('role', $role);
+        return view('admin.role.detail')->with('role', $role);
+    }
+
+    public function createProcess()
+    {
+        return view('admin.role.create');
     }
 
     public function create(RoleRequest $request)
     {
         $validated = $request->validated();
-        return $this->roleServiceInterfaces->create($validated);
+        $this->roleServiceInterfaces->create($validated);
+        return redirect(route('admin.show.all.roles'));
     }
 
+    public function hiden($id)
+    {
+        $this->roleServiceInterfaces->hiden($id);
+        return redirect(route('admin.show.all.roles'));
+    }
+
+    public function deleteProcess()
+    {
+        return view('admin.role.delete');
+    }
 
     public function delete($id)
     {
@@ -42,6 +58,7 @@ class RoleController extends Controller
     public function update($id, RoleRequest $request)
     {
         $validated = $request->validated();
-        return $this->roleServiceInterfaces->update($id, $validated);
+        $this->roleServiceInterfaces->update($id, $validated);
+        return redirect(route('admin.show.all.roles'));
     }
 }

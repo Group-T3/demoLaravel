@@ -35,6 +35,8 @@ Route::group(['prefix' => 'categories'],function (){
 
 Route::group(['prefix' => 'users'],function (){
     Route::get('list', [AdminUserController::class, 'index'])->name('admin.show.all.users');
+    Route::get('list-ban', [AdminUserController::class, 'getAllByStatusBan'])->name('admin.show.all.users.ban');
+    Route::get('list-delete', [AdminUserController::class, 'getAllByStatusDelete'])->name('admin.show.all.users.delete');
     Route::post('list', [AdminUserController::class, 'getAllBy'])->name('admin.show.filter');
     Route::get('detail/{id}', [AdminUserController::class, 'detail'])->name('admin.show.user');
     Route::put('update/{id}', [AdminUserController::class, 'update'])->name('admin.update.user');

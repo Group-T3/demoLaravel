@@ -200,7 +200,7 @@
 
             <li class="nav-item">
                 <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
-                    <i class="bi bi-layout-text-window-reverse"></i><span>User</span><i
+                    <i class="bi bi-layout-text-window-reverse"></i><span>None</span><i
                         class="bi bi-chevron-down ms-auto"></i>
                 </a>
                 <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
@@ -238,12 +238,12 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#">
+                        <a href="{{route('admin.show.all.users.ban')}}">
                             <i class="bi bi-circle"></i><span>List User Banned</span>
                         </a>
                     </li>
                     <li>
-                        <a href="#">
+                        <a href="{{route('admin.show.all.users.delete')}}">
                             <i class="bi bi-circle"></i><span>List User Deleted</span>
                         </a>
                     </li>

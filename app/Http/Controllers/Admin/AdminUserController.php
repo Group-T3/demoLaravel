@@ -26,6 +26,18 @@ class AdminUserController extends Controller
         return view('admin.user.list')->with('users', $users)->with('roles', Role::all());
     }
 
+    public function getAllByStatusBan()
+    {
+        $users = $this->userServiceInterfaces->findAll();
+        return view('admin.user.list-ban')->with('users', $users)->with('roles', Role::all());
+    }
+
+    public function getAllByStatusDelete()
+    {
+        $users = $this->userServiceInterfaces->findAll();
+        return view('admin.user.list-delete')->with('users', $users)->with('roles', Role::all());
+    }
+
     public function getAllBy(Request $request)
     {
         $users = $this->userServiceInterfaces->findAll();

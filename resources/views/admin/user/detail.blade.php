@@ -20,15 +20,10 @@
                     <div class="card">
                         <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
 
-                            <img src="{{$user->avt}}" alt="Profile" class="rounded-circle" style="width: 96px; height: 90px; border-radius: 50%">
+                            <img src="{{$user->avt}}" alt="Profile" class="rounded-circle"
+                                 style="width: 96px; height: 90px; border-radius: 50%">
                             <h2>{{$user->fullname}}</h2>
                             <h3>Web Designer</h3>
-                            <div class="social-links mt-2">
-                                <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
-                                <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
-                                <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
-                                <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
-                            </div>
                         </div>
                     </div>
 
@@ -90,26 +85,33 @@
 
                                     <!-- Profile Edit Form -->
                                     <form method="post"
-                                          action="{{route('admin.update.user', ['id'=> $user->id])}}" enctype="multipart/form-data">
+                                          action="{{route('admin.update.user', ['id'=> $user->id])}}"
+                                          enctype="multipart/form-data">
                                         @csrf
                                         @method('PUT')
                                         <div class="row mb-3">
                                             <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">Profile
                                                 Image</label>
                                             <div class="col-md-8 col-lg-9">
-                                                <img src="{{$user->avt}}" alt="Profile" style="width: 96px; height: 90px; border-radius: 50%">
+                                                <img id="imageUrl" src="{{$user->avt}}" alt="Profile"
+                                                     style="width: 96px; height: 90px; border-radius: 50%">
                                                 <div class="pt-2">
                                                     <div class="btn btn-primary btn-sm">
                                                         <label class="upload position-relative">
-                                                            <p class="mb-0"><i class="bi bi-cloud-arrow-up text-white fs-6"></i></p>
-                                                            <input class="opacity-0 hidden position-absolute" type="file" name="avt">
+                                                            <p class="mb-0"><i
+                                                                    class="bi bi-cloud-arrow-up text-white fs-6"></i>
+                                                            </p>
+                                                            <input id="imageUpload"
+                                                                   class="opacity-0 hidden position-absolute"
+                                                                   type="file" name="avt">
                                                         </label>
                                                     </div>
-                                                    <a href="#" class="btn btn-danger btn-sm fs-6"
-                                                       title="Remove my profile image"><i class="bi bi-trash"></i></a>
+                                                    <div onclick="myFunction()"
+                                                         class="btn btn-danger btn-sm fs-6"
+                                                         title="Remove my profile image"><i class="bi bi-trash"></i>
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <input name="imageUrl" hidden value="">
                                         </div>
 
                                         <div class="row mb-3">
@@ -250,4 +252,29 @@
         </section>
 
     </main><!-- End #main -->
+    <script>
+        function myFunction() {
+            var url = 'http://127.0.0.1:8000/destroy-image/' + {{$user->id}};
+
+            const headers = new Headers({
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': '{{csrf_token()}}'
+            });
+
+            fetch(url, {
+                method: 'post',
+                headers: headers,
+            })
+                .then(response => {
+                    if (response.status === 200) {
+                        return window.location.href = '/admin/users/detail/' + {{$user->id}}
+                    } else {
+                        return alert("Error");
+                    }
+
+                })
+                .catch(error => console.log(error));
+        }
+    </script>
 @endsection
+

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\File;
 
 class ImageController extends Controller
 {
@@ -32,10 +33,18 @@ class ImageController extends Controller
     // Destroy Image
     public function destroy($id)
     {
+//        $data = User::find($id);
+//        $image_path = public_path('images') . '/' . $data->avt;
+//        unlink($image_path);
+//        $data->delete();
+
         $data = User::find($id);
         $image_path = public_path('images') . '/' . $data->avt;
-        unlink($image_path);
-        $data->delete();
+        // Value is not URL but directory file path
+        if(File::exists($image_path)) {
+            File::delete($image_path);
+        }
+
         return redirect(route('admin.show.user', $id));
     }
 }

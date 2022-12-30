@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Filter\UserFilter;
 use App\Http\Request\CreateUserRequest;
 use App\Http\Request\UserRequest;
 use App\Models\Role;
@@ -20,10 +21,20 @@ class AdminUserController extends Controller
         $this->userServiceInterfaces = $userServiceInterfaces;
     }
 
-    public function index()
+    public function index(UserFilter $userFilter)
     {
-        $users = $this->userServiceInterfaces->findAll();
-        return view('admin.user.list')->with('users', $users)->with('roles', Role::all());
+        $users = User::filter($userFilter)->get();
+        // Create role from enums.
+        $reflector = new \ReflectionClass('App\Enums\UserStatus');
+        //
+        foreach ($reflector->getConstants() as $constValue) {
+            $statusList[] = $constValue;
+        }
+//        $users = $this->userServiceInterfaces->findAll();
+        return view('admin.user.list')
+            ->with('users', $users)
+            ->with('roles', Role::all())
+            ->with('statusList', $statusList);
     }
 
     public function getAllByStatusBan()

@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Request\MyRequest;
+namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateProfileRequest extends FormRequest
+class RoleRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,10 +24,9 @@ class UpdateProfileRequest extends FormRequest
     public function rules()
     {
         return [
-            'fullname' => 'required',
-            'email' => 'required',
-            'phonenumber' => 'required',
-            'address' => 'required',
+            'name' => 'required',
+            'desc' => 'required',
+            'status' => 'required',
         ];
     }
 }

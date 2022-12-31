@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Request\ProductRequest;
+use App\Enums\CategoryStatus;
+use App\Filter\ProductFilter;
+use App\Http\Requests\ProductRequest;
 use App\Models\Category;
+use App\Models\Product;
 use App\Service\Interfaces\ProductServiceInterfaces;
 use Illuminate\Routing\Controller;
 
@@ -16,10 +19,22 @@ class AdminProductController extends Controller
         $this->productServiceInterfaces = $productServiceInterfaces;
     }
 
-    public function index()
+    public function index(ProductFilter $productFilter)
     {
-        $products = $this->productServiceInterfaces->findAll();
-        return view('admin.product.list')->with('products', $products)->with('categories', Category::all());
+//        $products = $this->productServiceInterfaces->findAll();
+//        return view('admin.product.list')->with('products', $products)->with('categories', Category::all());
+
+        $products = Product::filter($productFilter)->get();
+        // Create role from enums.
+        $reflector = new \ReflectionClass('App\Enums\ProductStatus');
+        //
+//        foreach ($reflector->getConstants() as $constValue) {
+//            $statusList[] = $constValue;
+//        }
+        return view('admin.product.list')
+            ->with('products', $products)
+            ->with('categories', Category::where('status', '=', CategoryStatus::ACTIVE)->get())
+            ->with('statusList', $reflector->getConstants());
     }
 
     public function detail($id)

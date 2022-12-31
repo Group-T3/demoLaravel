@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Request\CategoryRequest;
 use App\Service\Interfaces\CategoryServiceInterfaces;
 use Illuminate\Routing\Controller;
 

@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Request\Auth;
+namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class LoginRequest extends FormRequest
+class UserRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,23 +24,29 @@ class LoginRequest extends FormRequest
     public function rules()
     {
         return [
+            'fullname' => 'required',
+            'address'  => 'required',
             'email'  => ['required', 'email:rfc',
                 function ($attribute, $value, $fail) {
                     if (!filter_var($value, FILTER_VALIDATE_EMAIL)) {
                         $fail($attribute . ' is invalid.');
                     }
                 }],
-            'password'  => ['required', 'string', 'min:6'],
+            'phonenumber'  => 'required',
+            'status' => 'required',
+            'role_id' => 'required',
         ];
     }
 
     public function messages()
     {
         return [
+            'fullname.required' => 'Name is required.',
+            'address.required' => 'Address is required.',
+            'phonenumber.required' => 'PhoneNumber is required.',
             'email.min' => 'Email must have at least 2 characters.',
-            'password.required' => 'Password is required.',
-            'password.min' => 'Password must have at least 4 characters.',
-            'password.string' => 'Password must be of type string.',
+            'status.required' => 'Status is required.',
+            'role_id.required' => 'Role is required.',
         ];
     }
 }

@@ -12,27 +12,63 @@
                 </ol>
             </nav>
         </div><!-- End Page Title -->
-       <form method="post" action="{{route('admin.show.products')}}">
-           @csrf
-           <div class="d-flex " style="float: right">
-               <label class="" style="margin: 9px 24px 0 0">
-                   <select class="form-control" style="width: 150px" name="category_id">
-                       <option datd-display="" value="Search">Search</option>
-                       @foreach($categories as $category)
-                           @if($category->status == 'ACTIVE')
-                               <option value="{{$category->id}}">{{$category->name}}</option>
-                           @endif
-                       @endforeach
-                   </select>
-               </label>
-               <button type="submit" class="btn btn-primary" style="margin: 8px 0">Search</button>
-               <button class="btn btn-secondary" style="margin: 8px 16px "><a href="{{route('admin.show.all.products')}}" style="color: white">Reset</a></button>
-           </div>
-       </form>
 
         <section class="section">
             <div class="row">
                 <div class="col-lg-10">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Search</h5>
+                            <form class="row g-3" method="post" action="{{route('admin.search.all.products')}}">
+                                @csrf
+                                <div class="col-md-2">
+                                    <label for="validationDefault01" class="form-label">ID: </label>
+                                    <input name="id" type="text" class="form-control" id="validationDefault01"
+                                           placeholder="12">
+                                </div>
+                                <div class="col-md-5">
+                                    <label for="validationDefault02" class="form-label">Product name: </label>
+                                    <input name="name" type="text" class="form-control" id="validationDefault02"
+                                           placeholder="Macbook">
+                                </div>
+                                <div class="col-md-5">
+                                    <label for="validationDefaultUsername" class="form-label">Description: </label>
+                                    <input name="desc" type="text" class="form-control" id="validationDefaultUsername"
+                                           aria-describedby="inputGroupPrepend2" placeholder="This is the description">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="validationDefault03" class="form-label">Price: </label>
+                                    <input name="price" type="text" class="form-control" id="validationDefault03"
+                                           placeholder="99.99">
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="validationDefault04" class="form-label">Status: </label>
+                                    <select name="status" class="form-select" id="validationDefault04">
+                                        <option selected="selected" value="">Select Status</option>
+                                        @foreach($statusList as $status)
+                                            <option>{{$status}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="validationDefault06" class="form-label">Category: </label>
+                                    <select class="form-select" name="category_id">
+                                        <option selected="selected" value="">Select Category</option>
+                                        @foreach($categories as $category)
+                                                <option value="{{$category->id}}">{{$category->name}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="col-12">
+                                    <button class="btn btn-primary" type="submit">Search</button>
+                                    <button class="btn btn-secondary" style="margin: 8px 16px "><a
+                                            href="{{route('admin.show.all.products')}}"
+                                            style="color: white">Reset</a></button>
+                                </div>
+                            </form>
+
+                        </div>
+                    </div>
 
                     <div class="card">
                         <div class="card-body">
@@ -54,8 +90,10 @@
                                 @foreach($products as $product)
                                     <tbody>
                                     <tr>
-                                        <td><a class="text-decoration-none" href="detail/{{$product->id}}">{{$product->id}}</a></td>
-                                        <td><a class="text-decoration-none" href="detail/{{$product->id}}">{{$product->name}}</a></td>
+                                        <td><a class="text-decoration-none"
+                                               href="detail/{{$product->id}}">{{$product->id}}</a></td>
+                                        <td><a class="text-decoration-none"
+                                               href="detail/{{$product->id}}">{{$product->name}}</a></td>
                                         <td>{{$product->qty}}</td>
                                         <td>{{$product->price}}</td>
                                         <td>{{$product->desc}}</td>

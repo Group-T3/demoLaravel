@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Enums\UserStatus;
-use App\Http\Request\Auth\ChangePasswordRequest;
-use App\Http\Request\Auth\LoginRequest;
-use App\Http\Request\Auth\RegisterRequest;
+use App\Http\Requests\Auth\ChangePasswordRequest;
+use App\Http\Requests\Auth\LoginRequest;
+use App\Http\Requests\Auth\RegisterRequest;
 use App\Models\User;
 use App\Service\Interfaces\UserServiceInterfaces;
 use Illuminate\Routing\Controller;

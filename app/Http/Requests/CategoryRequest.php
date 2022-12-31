@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Request;
+namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ProductRequest extends FormRequest
+class CategoryRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,11 +25,7 @@ class ProductRequest extends FormRequest
     {
         return [
             'name' => 'required',
-            'qty' => 'required',
-            'price' => 'numeric|between:0,999999.99',
-            'img' => 'required|url',
             'desc' => 'required',
-            'category_id' => 'required',
             'status' => 'required',
         ];
     }

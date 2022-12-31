@@ -12,7 +12,8 @@ Route::get('/dashboard', [HomeController::class, 'admin'])->middleware('auth')->
 
 Route::group(['prefix' => 'products'],function (){
     Route::get('list', [AdminProductController::class, 'index'])->name('admin.show.all.products');
-    Route::post('list', [AdminProductController::class, 'getAllBy'])->name('admin.show.products');
+    Route::post('list', [AdminProductController::class, 'index'])->name('admin.search.all.products');
+    Route::post('list/by', [AdminProductController::class, 'getAllBy'])->name('admin.show.products');
     Route::get('detail/{id}', [AdminProductController::class, 'detail'])->name('admin.show.product');
     Route::put('update/{id}', [AdminProductController::class, 'update'])->name('admin.update.product');
     Route::get('create', [AdminProductController::class, 'createProcess'])->name('admin.show.form.create');

@@ -2,9 +2,8 @@
 
 namespace App\Filter;
 
-use App\Http\Requests\SearchUserRequest;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Support\Facades\Request;
+use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
 class QueryFilter
@@ -41,7 +40,7 @@ class QueryFilter
      */
     protected $filterable;
 
-    public function __construct(SearchUserRequest $request)
+    public function __construct(Request $request)
     {
         $this->request = $request;
         $this->filters = $this->request->all();

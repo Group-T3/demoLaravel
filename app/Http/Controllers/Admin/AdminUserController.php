@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Filter\UserFilter;
-use App\Http\Request\CreateUserRequest;
-use App\Http\Request\UserRequest;
+use App\Http\Requests\CreateUserRequest;
+use App\Http\Requests\UserRequest;
 use App\Models\Role;
 use App\Models\User;
 use App\Service\Interfaces\UserServiceInterfaces;

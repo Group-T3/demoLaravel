@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Request\Auth\ChangePasswordRequest;
-use App\Http\Request\MyRequest\UpdateProfileRequest;
+use App\Http\Requests\Auth\ChangePasswordRequest;
+use App\Http\Requests\MyRequest\UpdateProfileRequest;
 use App\Models\User;
 use App\Service\Interfaces\UserServiceInterfaces;
 use Illuminate\Routing\Controller;

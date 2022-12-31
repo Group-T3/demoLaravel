@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Request\ProductRequest;
 use App\Service\Interfaces\ProductServiceInterfaces;
 use Illuminate\Routing\Controller;
 

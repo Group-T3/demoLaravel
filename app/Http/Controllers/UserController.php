@@ -21,7 +21,7 @@ class UserController extends Controller
     public function myprofile($id)
     {
         $user = $this->userServiceInterfaces->findByIdAndStatus($id);
-        return view('templates.myprofile')->with('user', $user);
+        return view('templates.account.myprofile')->with('user', $user);
     }
 
     public function update($id, UpdateProfileRequest $request)

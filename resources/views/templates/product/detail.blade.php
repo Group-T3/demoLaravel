@@ -34,12 +34,14 @@
                             <h2>{{$product->name}}</h2>
                             <h1 class="text-danger">${{$product->price}}</h1>
                             <h4>{{$product->desc}}</h4>
-                            <p>Transport: </p>
+{{--                            <p>Transport: </p>--}}
                             <h5>Quantity:
                                 <input type="number" min="1" value="1" max="{{$product->qty}}">
                                 <span class="" style="color: #bcbcbc">{{$product->qty}} products available</span></h5>
-                            <button>Add to Cart</button>
-                            <button>Buy now</button>
+                            <div style="margin-top: 16px">
+                                <button class="btn btn-primary" style="padding: 8px">Add to Cart</button>
+                                <button class="btn btn-danger" style="padding: 8px; margin-left: 36px">Buy now</button>
+                            </div>
                         </div>
                     </div>
                 </div>

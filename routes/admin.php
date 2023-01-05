@@ -47,6 +47,7 @@ Route::group(['prefix' => 'users'],function (){
     Route::post('delete/{id}', [AdminUserController::class, 'hiden'])->name('admin.hiden.user');
     Route::get('delete', [AdminUserController::class, 'deleteProcess'])->name('admin.choose.user.delete');
     Route::delete('{id}', [AdminUserController::class, 'delete'])->name('admin.delete.user');
+    Route::get('destroy-image/{id}', [AdminUserController::class, 'destroy'])->name('admin.image.destroy');
 });
 
 Route::group(['prefix' => 'roles'],function (){

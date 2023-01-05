@@ -32,6 +32,7 @@ Route::prefix('users')->middleware('auth')->group(function () {
     Route::put('update/{id}', [UserController::class, 'update'])->name('update.profile');
     Route::get('myprofile/{id}', [UserController::class, 'myprofile'])->name('myprofile');
     Route::post('changePass', [UserController::class, 'changePassword'])->name('change-password');
+    Route::get('destroy-image/{id}', [UserController::class, 'destroy'])->name('image.destroy');
 });
 
 Route::prefix('products')->middleware('auth')->group(function () {
@@ -43,12 +44,6 @@ Route::prefix('products')->middleware('auth')->group(function () {
 Route::prefix('categories')->middleware('auth')->group(function () {
     Route::get('list', [CategoryController::class, 'getList'])->name('show.all.categories');
     Route::get('detail/{id}', [CategoryController::class, 'getDetail'])->name('show.detail.category');
-});
-
-Route::controller(ImageController::class)->group(function () {
-    Route::get('image-upload', 'index')->name('image.form');
-    Route::post('upload-image', 'storeImage')->name('image.upload');
-    Route::post('destroy-image/{id}', 'destroy')->name('image.destroy');
 });
 
 //Admin

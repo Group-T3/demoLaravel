@@ -1,21 +1,28 @@
 @php use Illuminate\Support\Facades\Auth; @endphp
-    <!DOCTYPE html>
+
+    <!doctype html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet " href="asset/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"/>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swa"
+        rel="stylesheet">
+    <link href="{{asset('asset/css/style.css')}}" rel="stylesheet">
+    <title>Base</title>
 </head>
+
 <body>
 <div id="main">
     <div id="header">
         <ul id="supHeader">
             <li><a href="{{route('home')}}">Home</a></li>
             <li><a href="{{route('show.all.products')}}">Product</a></li>
-            <li><a href="{{route('show.all.categories')}}">Category</a></li>
+            <li><a href="#">Category</a></li>
             @if(!Auth::user())
                 <li>
                     <a class="" href="{{route('auth.login')}}">
@@ -55,6 +62,6 @@
         @endif
     </div>
 </div>
-
 </body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/js/all.min.js"></script>
 </html>

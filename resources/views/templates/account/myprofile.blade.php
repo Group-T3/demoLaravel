@@ -113,7 +113,8 @@
                             <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
 
                                 <!-- Profile Edit Form -->
-                                <form method="post" action="{{route('update.profile', ['id'=> $user->id])}}" enctype="multipart/form-data">
+                                <form method="post" action="{{route('update.profile', ['id'=> $user->id])}}"
+                                      enctype="multipart/form-data">
                                     @csrf
                                     @method('PUT')
                                     <div class="row mb-3">
@@ -124,8 +125,10 @@
                                             <div class="pt-2">
                                                 <div class="btn btn-primary btn-sm">
                                                     <label class="upload position-relative">
-                                                        <p class="mb-0"><i class="bi bi-cloud-arrow-up text-white fs-6"></i></p>
-                                                        <input class="opacity-0 hidden position-absolute" type="file" name="avt">
+                                                        <p class="mb-0"><i
+                                                                class="bi bi-cloud-arrow-up text-white fs-6"></i></p>
+                                                        <input class="opacity-0 hidden position-absolute" type="file"
+                                                               name="avt">
                                                     </label>
                                                 </div>
                                                 <a href="#" class="btn btn-danger btn-sm"
@@ -192,22 +195,26 @@
                                         <label for="newpassword" class="col-md-4 col-lg-3 col-form-label">New
                                             Password</label>
                                         <div class="col-md-8 col-lg-9">
-                                            <input onkeyup='check_pass();' name="newpassword" type="password" class="form-control"
+                                            <input onkeyup='check_pass();' name="newpassword" type="password"
+                                                   class="form-control"
                                                    id="newpassword">
                                         </div>
                                     </div>
 
                                     <div class="row mb-3">
-                                        <label for="newpasswordConfirm" class="col-md-4 col-lg-3 col-form-label">Re-enter New
+                                        <label for="newpasswordConfirm" class="col-md-4 col-lg-3 col-form-label">Re-enter
+                                            New
                                             Password</label>
                                         <div class="col-md-8 col-lg-9">
-                                            <input onkeyup='check_pass();' name="newpasswordConfirm" type="password" class="form-control"
+                                            <input onkeyup='check_pass();' name="newpasswordConfirm" type="password"
+                                                   class="form-control"
                                                    id="newpasswordConfirm">
                                         </div>
                                     </div>
 
                                     <div class="text-center">
-                                        <button id="submit" type="submit" class="btn btn-primary">Change Password</button>
+                                        <button id="submit" type="submit" class="btn btn-primary">Change Password
+                                        </button>
                                     </div>
                                 </form><!-- End Change Password Form -->
 

@@ -3,11 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Service\Interfaces\UserServiceInterfaces;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\File;
 
 class ImageController extends Controller
 {
+
     // View File To Upload Image
     public function index()
     {
@@ -33,9 +36,11 @@ class ImageController extends Controller
     public function destroy($id)
     {
         $data = User::find($id);
-        $image_path = public_path('images') . '/' . $data->avt;
-        unlink($image_path);
-        $data->delete();
-        return redirect(route('admin.show.user', $id));
+        $urlImg = $data->avt;
+        $realUrl = str_replace(asset(''), '', $urlImg);
+        if (File::exists($realUrl)) {
+            File::delete($realUrl);
+        }
+        return redirect(route('myprofile', $id));
     }
 }

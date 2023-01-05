@@ -131,7 +131,7 @@
                                                                name="avt">
                                                     </label>
                                                 </div>
-                                                <a href="#" class="btn btn-danger btn-sm"
+                                                <a href="{{route('image.destroy', ['id'=> $user->id])}}" class="btn btn-danger btn-sm"
                                                    title="Remove my profile image"><i class="bi bi-trash"></i></a>
                                             </div>
                                         </div>

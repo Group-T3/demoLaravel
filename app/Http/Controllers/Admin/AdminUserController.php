@@ -10,6 +10,7 @@ use App\Models\User;
 use App\Service\Interfaces\UserServiceInterfaces;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
 
 class AdminUserController extends Controller
@@ -64,6 +65,9 @@ class AdminUserController extends Controller
     public function detail($id)
     {
         $user = $this->userServiceInterfaces->findById($id);
+        if ($user->avt == null) {
+            $user->avt = 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png';
+        }
         return view('admin.user.detail')->with('user', $user)->with('roles', Role::all());
     }
 
@@ -114,6 +118,20 @@ class AdminUserController extends Controller
         }
 
         $this->userServiceInterfaces->update($id, $validated);
-        return redirect(route('admin.show.all.users'));
+        return redirect(route('admin.show.user', $id));
+    }
+
+    public function destroy($id)
+    {
+        $data = User::find($id);
+        $urlImg = $data->avt;
+        $realUrl = str_replace(asset(''), '', $urlImg);
+        if (File::exists($realUrl)) {
+            File::delete($realUrl);
+        }
+        $user = User::where('id', $id)->update(
+            ['avt' => '']
+        );
+        return redirect(route('admin.show.user', $id));
     }
 }

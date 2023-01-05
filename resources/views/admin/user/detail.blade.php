@@ -23,12 +23,6 @@
                             <img src="{{$user->avt}}" alt="Profile" class="rounded-circle" style="width: 96px; height: 90px; border-radius: 50%">
                             <h2>{{$user->fullname}}</h2>
                             <h3>Web Designer</h3>
-                            <div class="social-links mt-2">
-                                <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
-                                <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
-                                <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
-                                <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
-                            </div>
                         </div>
                     </div>
 
@@ -105,7 +99,7 @@
                                                             <input class="opacity-0 hidden position-absolute" type="file" name="avt">
                                                         </label>
                                                     </div>
-                                                    <a href="#" class="btn btn-danger btn-sm fs-6"
+                                                    <a href="{{route('admin.image.destroy', ['id'=> $user->id])}}" class="btn btn-danger btn-sm fs-6"
                                                        title="Remove my profile image"><i class="bi bi-trash"></i></a>
                                                 </div>
                                             </div>
@@ -197,35 +191,6 @@
                                                 </select>
                                             </div>
                                         </div>
-
-                                        {{--                                        <div class="row mb-3">--}}
-                                        {{--                                            <label for="Twitter" class="col-md-4 col-lg-3 col-form-label">Twitter Profile</label>--}}
-                                        {{--                                            <div class="col-md-8 col-lg-9">--}}
-                                        {{--                                                <input name="twitter" type="text" class="form-control" id="Twitter" value="https://twitter.com/#">--}}
-                                        {{--                                            </div>--}}
-                                        {{--                                        </div>--}}
-
-                                        {{--                                        <div class="row mb-3">--}}
-                                        {{--                                            <label for="Facebook" class="col-md-4 col-lg-3 col-form-label">Facebook Profile</label>--}}
-                                        {{--                                            <div class="col-md-8 col-lg-9">--}}
-                                        {{--                                                <input name="facebook" type="text" class="form-control" id="Facebook" value="https://facebook.com/#">--}}
-                                        {{--                                            </div>--}}
-                                        {{--                                        </div>--}}
-
-                                        {{--                                        <div class="row mb-3">--}}
-                                        {{--                                            <label for="Instagram" class="col-md-4 col-lg-3 col-form-label">Instagram Profile</label>--}}
-                                        {{--                                            <div class="col-md-8 col-lg-9">--}}
-                                        {{--                                                <input name="instagram" type="text" class="form-control" id="Instagram" value="https://instagram.com/#">--}}
-                                        {{--                                            </div>--}}
-                                        {{--                                        </div>--}}
-
-                                        {{--                                        <div class="row mb-3">--}}
-                                        {{--                                            <label for="Linkedin" class="col-md-4 col-lg-3 col-form-label">Linkedin Profile</label>--}}
-                                        {{--                                            <div class="col-md-8 col-lg-9">--}}
-                                        {{--                                                <input name="linkedin" type="text" class="form-control" id="Linkedin" value="https://linkedin.com/#">--}}
-                                        {{--                                            </div>--}}
-                                        {{--                                        </div>--}}
-
                                         <div class="text-center">
                                             <button type="submit" class="btn btn-primary">Save Changes</button>
                                             <button type="reset" class="btn btn-secondary">Reset</button>

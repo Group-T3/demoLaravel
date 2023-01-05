@@ -2,10 +2,12 @@
 
 namespace App\Providers;
 
+use App\Service\Implement\CartService;
 use App\Service\Implement\CategoryService;
 use App\Service\Implement\ProductService;
 use App\Service\Implement\RoleService;
 use App\Service\Implement\UserService;
+use App\Service\Interfaces\CartServiceInterface;
 use App\Service\Interfaces\CategoryServiceInterfaces;
 use App\Service\Interfaces\ProductServiceInterfaces;
 use App\Service\Interfaces\RoleServiceInterfaces;
@@ -33,6 +35,9 @@ class AppServiceProvider extends ServiceProvider
         $this->app->singleton(
             RoleServiceInterfaces::class,
             RoleService::class);
+        $this->app->singleton(
+            CartServiceInterface::class,
+            CartService::class);
     }
 
     /**

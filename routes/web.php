@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ImageController;
@@ -41,9 +42,8 @@ Route::prefix('products')->middleware('auth')->group(function () {
     Route::get('category-{id}', [ProductController::class, 'getBy'])->name('show.by.category.products');
 });
 
-Route::prefix('categories')->middleware('auth')->group(function () {
-    Route::get('list', [CategoryController::class, 'getList'])->name('show.all.categories');
-    Route::get('detail/{id}', [CategoryController::class, 'getDetail'])->name('show.detail.category');
+Route::prefix('carts')->middleware('auth')->group(function () {
+    Route::get('list', [CartController::class, 'index'])->name('show.carts');
 });
 
 //Admin

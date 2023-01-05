@@ -19,19 +19,9 @@ class CartService implements CartServiceInterface
         return $this->cartRepositoryInterface->getAll();
     }
 
-    public function findAllByStatus()
-    {
-        return $this->cartRepositoryInterface->getAllByStatus();
-    }
-
     public function findById($id)
     {
         return $this->cartRepositoryInterface->findById($id);
-    }
-
-    public function findByIdAndStatus($id)
-    {
-        return $this->cartRepositoryInterface->findByIdAndStatus($id);
     }
 
     public function hiden($id)
@@ -54,5 +44,10 @@ class CartService implements CartServiceInterface
     public function delete($id)
     {
         return $this->cartRepositoryInterface->delete($id);
+    }
+
+    public function findByUserId($id)
+    {
+        return $this->cartRepositoryInterface->getAll();
     }
 }

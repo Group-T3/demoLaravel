@@ -107,7 +107,7 @@ class AdminUserController extends Controller
             // Public Folder
             $request->avt->move(public_path('images'), $imageName);
 
-            $imageName = 'http://127.0.0.1:8000/images/' . $imageName;
+            $imageName = asset('images/' . $imageName);
             $user = User::where('id', $id)->update(
                 ['avt' => $imageName]
             );

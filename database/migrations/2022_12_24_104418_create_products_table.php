@@ -19,7 +19,7 @@ return new class extends Migration
             $table->integer('qty');
             $table->float('price');
             $table->string('img');
-            $table->string('desc');
+            $table->longText('desc');
             $table->string('status');
 //            $table->foreignIdFor(\App\Models\Category::class)->unsigned();
             $table->unsignedBigInteger('category_id');

@@ -44,6 +44,9 @@ Route::prefix('products')->middleware('auth')->group(function () {
 
 Route::prefix('carts')->middleware('auth')->group(function () {
     Route::get('list', [CartController::class, 'index'])->name('show.carts');
+    Route::get('user', [CartController::class, 'detail'])->name('show.cart');
+    Route::get('create', [CartController::class, 'processCreate'])->name('show.cart.create');
+    Route::post('create', [CartController::class, 'create'])->name('cart.create');
 });
 
 //Admin

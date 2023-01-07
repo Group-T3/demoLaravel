@@ -114,7 +114,7 @@
                                     <div class="col-md-6 col-lg-4 col-xl-3 ">
                                         <div id="product" class="single-product border bg-white">
                                             <div class="part-1"
-                                                 style="background: url({{$product->img}}) no-repeat center; background-size: 300px">
+                                                 style="background: url({{$product->images}}) no-repeat center; background-size: 300px">
                                                 <ul>
                                                     <li><a href="#"><i class="fas fa-shopping-cart"></i></a></li>
                                                     <li><a href="#"><i class="fas fa-heart"></i></a></li>

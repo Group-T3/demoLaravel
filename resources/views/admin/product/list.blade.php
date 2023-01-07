@@ -104,7 +104,7 @@
                                 @endforeach
                             </table>
                             <!-- End Table with hoverable rows -->
-
+                            {{$products->links('pagination::bootstrap-5')}}
                         </div>
                     </div>
 

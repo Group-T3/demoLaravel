@@ -21,16 +21,9 @@ class AdminProductController extends Controller
 
     public function index(ProductFilter $productFilter)
     {
-//        $products = $this->productServiceInterfaces->findAll();
-//        return view('admin.product.list')->with('products', $products)->with('categories', Category::all());
-
-        $products = Product::filter($productFilter)->get();
+        $products = Product::filter($productFilter)->orderBy('created_at', 'DESC')->paginate(10);
         // Create role from enums.
         $reflector = new \ReflectionClass('App\Enums\ProductStatus');
-        //
-//        foreach ($reflector->getConstants() as $constValue) {
-//            $statusList[] = $constValue;
-//        }
         return view('admin.product.list')
             ->with('products', $products)
             ->with('categories', Category::where('status', '=', CategoryStatus::ACTIVE)->get())

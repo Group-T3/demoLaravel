@@ -28,7 +28,7 @@ class CartRequest extends FormRequest
             'product_id' => 'required',
             'qty' => 'required',
             'price' => 'numeric|between:0,999999.99',
-            'total_price' => 'required',
+            'total_price' => 'required|between:0,999999.99',
         ];
     }
 }

@@ -19,7 +19,7 @@ class ProductController extends Controller
 
     public function index()
     {
-        $products = Product::where('status', '=', 'ACTIVE')->paginate(8);
+        $products = Product::where('status', '=', 'ACTIVE')->orderBy('created_at', 'DESC')->paginate(8);
         return view('templates.product.list')
             ->with('products', $products)
             ->with('categories', Category::where('status', '=', CategoryStatus::ACTIVE)->get());

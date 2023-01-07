@@ -18,7 +18,7 @@
                 <div class="col-lg-10">
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title text-center"><img src="{{$product->img}}" width="100"
+                            <h5 class="card-title text-center"><img src="{{$product->images}}" width="100"
                                                                     height="100"><span class=""
                                                                                        style="font-size: 24px; margin-left: 8px; color: #012970;">{{$product->name}}</span>
                             </h5>
@@ -63,8 +63,8 @@
                                 </div>
                                 <div class="col-md-6">
                                     <label for="inputImage" class="form-label">Image</label>
-                                    <input name="img" type="text" class="form-control" id="inputImage"
-                                           value="{{$product->img}}" required="">
+                                    <input name="images" type="text" class="form-control" id="inputImage"
+                                           value="{{$product->images}}" required="">
                                 </div>
                                 <div class="col-md-6">
                                     <label for="inputStatus" class="form-label">Status</label>

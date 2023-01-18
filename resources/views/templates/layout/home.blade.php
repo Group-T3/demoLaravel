@@ -23,8 +23,8 @@
                         <li><a href="#">Moderator</a></li>
                     @else
                     @endif
+                    <li><a href="{{route('show.cart', auth::user()->id)}}">My Cart</a></li>
                     <li><a href="{{route('myprofile', auth::user()->id)}}">AccountManager</a></li>
-                    <li><a href="#">Setting</a></li>
                     <li>
                         <a href="{{route('auth.logout')}}">Logout</a>
                     </li>

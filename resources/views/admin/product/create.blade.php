@@ -56,7 +56,7 @@
                                 <div class="row mb-3">
                                     <label for="inputImage" class="col-sm-2 col-form-label">Image: </label>
                                     <div class="col-sm-10">
-                                        <input  name="img" type="text" class="form-control" required="" placeholder="https://cdn.tgdd.vn/Products/Images/522/237695/ipad-pro-m1-11-inch-wifi-2-1.jpg">
+                                        <input  name="images" type="text" class="form-control" required="" placeholder="https://cdn.tgdd.vn/Products/Images/522/237695/ipad-pro-m1-11-inch-wifi-2-1.jpg">
                                     </div>
                                 </div>
                                 <div class="row mb-3">
